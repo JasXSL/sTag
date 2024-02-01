@@ -3,6 +3,7 @@ Legend:
 - Value: The tag value.
   - USER_DEFINED: The value can be anything defined by the user. If used on a category with quant type MULTIPLE, enter them in order of most to least significant. For an instance, fox fur may be dominant orange, then white, then black. You'd do something like `TAG$!body_color$orange$white$black`, letting devs know that orange is the most significant color.
   - X/Y/Z : The value can be one of these. Note that many of these may be subject to interpretation. Just make an estimate and it'll work out!
+    - On the values listed as `none/tiny/small/average/large/huge` you can shorten them to n/t/s/a/l/h
   - X,Y,Z : The value should be an ordered CSV following this pattern.
   - X,Y,Z... : The value should be an ordered CSV but has a variable amount of entries specified by the user.
 - Default value: The default value that scripters should expect if the tag is not set on an avatar. **If your avatar matches the default value, you should not add the tag to your avatar.**
