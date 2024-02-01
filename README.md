@@ -28,12 +28,45 @@ We picked the double and single dollar-separated syntax because of the free JasX
 # User setup
 
 1. The simplest way is to edit the description of the body part or clothing you want to tag. That way you know you have the correct tags whenever you wear that avatar or outfit. 
-  - If your attachment is no-mod, I recommend adding and wearing an invisible object alongside that body part or piece of clothing with the same name except _tags appended to it.
+  - If your attachment is no-mod, I recommend adding and wearing an invisible object alongside that body part or piece of clothing with the same name except _tags appended to it. Note that an attachment that shows as no-mod in your inventory may actually be editable when rezzed in world.
   - The tagging system only works for root prims, not for links.
   - If you are actively wearing the object you're modifying, you will need to right click it from your inventory and set the description from the object properties, otherwise the description won't save. You will also need to re-attach said attachment or relog for the in-world description to update.
-2. Type in your tags. For an instance, if you're wearing a female fox body, you could edit it and set the description to `TAG$sex_female$species_fox`
+2. Type in your tags. For an instance, if you're wearing a female fox body, you could edit it and set the description to `TAG$sex_female$spec_fox`.
 3. For a very basic setup, that's all you need to do. Since avatar sex and species are by far the most important tags for developers. However, if you want to get more in depth, you should check out the [PG Tag List](/tags/PG.md). And if you want to get a bit more lewd, check out the [Adult tag extension](/tags/Adult.md).
 
+### Writing tags quick start guide:
+
+1. Start by going through the [list](/tags/PG.md). The standard tag listing has suggested attachment to put said description on.
+2. I'm going to use my female thiccfox avatar for this example. The required PG tags are: spec (species), subs (subspecies), sex, ofit (outfit). However, outfit tags are recommended to go on the outfit attachments themselves. So we'll ignore those for now and just focus on the body tags.
+3. We need to start with `TAG$`, and then add tags separated by $. So to fill out the required tags we'll enter: `TAG$spec_fox$subs_vulpine$sex_female`. That's all we need to be compliant with the spec. But for the sake of completion, let's add some secondary tags too: `TAG$spec_fox$subs_vulpine$sex_female$hair_large$bdycoat_fur$bdyfat_large`. Note that if your subspecies isn't relevant, make it the same as your species. Such as `TAG$spec_human$subs_human`
+4. The avatar has the tail as a separate attachment. I'll tag that up with `TAG$tail_average`
+5. Finally the avatar comes with a bikini top, bottoms, and short skirt. We can set a category for these to write less by using ! - For an example, I'll tag the skirt as `TAG$!ofit$skirt$short skirt`, whcih is exactly the same as typing `TAG$ofit_skirt$ofit_short_skirt`. When you put ! before an entry it sets that entry as the category, and the tags following it will have the category prepended automatically when parsed by a script. I'll take the top as `TAG$!ofit$bra$bikini top` and the bottom as `TAG$!ofit$underpants$thong$bikini bottom`. Some of these tags are tertiary, and will rarely ever be used in actual projects, but since clothes are often on separate attachments, you have plenty of room to be detailed in your tagging.
+6. **That's it! You're done!** Unless the tags you've chosen are longer than the 127 bytes allowed in SL description, or want to add adult tags. In which case read on.
+
+### Fitting more stuff into the description
+
+So you've run into issues where you're running out of space in your description. There are a few things you should consider doing!
+
+- Use ! to set an active tag. As discussed above, any category that allows multiple entries (such as ofit or bdycoat) you can set a the category by prepending it with an exclamation mark. Any following tags will have that category automatically prepended. For an example: `TAG$!ofit$skirt$short skirt$!bdycoat$fur$scales` is the same as writing `TAG$ofit_skirt$ofit_short skirt$bdycoat_fur$bdycoat_scales`.
+- Some values can be shortened. For an example, the values that expect none/tiny/small/average/large/huge may be shortened to their initial: n/t/s/a/l. So instead of doing `bdyfat_large` you can write `bdyfat_l`
+- In the worst case scenario you can attach tags to other bodyparts. For an instance if you always use the same head with the same body, you can spread your tags between the head attachment and body attachment. Or create an invisible prim, tag it, and always wear it alongside your body.
+- In our example above, we can turn `TAG$spec_fox$subs_vulpine$sex_female$hair_large$bdycoat_fur$bdyfat_large` into `TAG$spec_fox$subs_vulpine$sex_female$hair_l$bdycoat_fur$bdyfat_l`
+
+### Adult tags: Genitals
+
+- The adult extension only has one primary tag (at time of writing): bits. This gives you more fine control over your settings, especially in JasX games that use genital flags instead of gender. Set one bits tag for each piece of genitalia relevant to your avatar. Example for female would be `TAG$bits_vagina$bits_breasts`. This can be shortened to the initials: `TAG$bits_v$bits_b`. If we add it to our body example above. The genital tags also lets you append a size tag (none/tiny/average/large/huge) like `TAG$bits_breasts_large`, and we can shorten both: `TAG$bits_b_l`. Putting it together with the rest of the body tags: `TAG$spec_fox$subs_vulpine$sex_female$hair_l$bdycoat_fur$bdyfat_l$!bits$b_l$v`.
+- For secondary tags we'll add a butt tag `butt_large` (shortened to `butt_l`). `TAG$spec_fox$subs_vulpine$sex_female$hair_l$bdycoat_fur$bdyfat_l$butt_large$!bits$b_l$v`. Note that I put it before the ! because even though you can cancel the active category by adding it with no category after it `TAG$!bits$b_l$!$butt_large`, it saves space if you put it before the first !
+- That's basically it. The final shortened body description is as follows: 
+  `TAG$spec_fox$subs_vulpine$sex_female$hair_l$bdycoat_fur$bdyfat_l$butt_large$!bits$b_l$v` 
+  To recap, this description says that: 
+  - Our species is `fox`.
+  - We belong to the `vulpine` category.
+  - We're female.
+  - We have large (long) hair.
+  - We have fur.
+  - We are chubby (large body fat).
+  - We have a big butt.
+  - We have a vagina, and large breasts.
 
 # Developer setup
 
