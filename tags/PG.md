@@ -21,7 +21,7 @@ These are tags that most users SHOULD use. If you set up any tags at all, set th
 
 | Category | Value | Default Value | Quant | Example | Recommended Point | Explanation |
 | --- | --- | --- | --- | --- | --- | --- |
-| species | USER_DEFINED | human | SINGLE | species_fox | Body | Sets your avatar's species. |
+| species | USER_DEFINED | N/A | SINGLE | species_human | Body | Sets your avatar's species. |
 | sex | male/female/USER_DEFINED | N/A | SINGLE | sex_male | Body | Sets your avatars physical sex. Note: The adult tagset has a "bits" tag which is more granular than this, and should be prioritized over this tag for adult projects. |
 | pronouns | he,him,his / she,her,her / USER_DEFINED | DEVELOPER_DEFINED | SINGLE | pronouns_he,him,his | Body | Most users can omit this tag. The default value is left up to individual devs, because I'm not touching this subject. If you're not happy with the dev's implementation you can set it explicitly. Assuming the pronouns are he,him,his, the examples in order would be pronouns that fit "he is a cat", "it's him, the cat", "it's his cat". |
 
