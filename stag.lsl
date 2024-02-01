@@ -129,7 +129,7 @@ integer sTagExists( key id ){
 
 // Takes a standard none/tiny/average/large/huge value and converts it to an int of 0(none), 1(tiny) ... 5(huge). returns -1 if not found
 // Note that this only works when the size identifier starts off the string. So bits size uses a different method further down.
-#define sTag$sizeToInt( size ) llListFindList((list)110 /*n*/ + 116 /*t*/ + 115 /*s*/ + 97 /*a*/ + 108/*l*/ + 104/*h*/, (list)llOrd(size,0))
+#define sTag$sizeToInt( size ) llSubStringIndex("ntsalh", llGetSubString(size, 0, 0))
 
 /* Macros with any default values already set. These are only provided for Primary and Secondary categories. */
 
@@ -174,11 +174,11 @@ integer sTagExists( key id ){
 // This converts bits to a JasX bitmask where 1 = penis, 2 = vagina, 4 = breasts
 integer _stbbm( list bitsTags ){
 	
-	list template = (list)112/*p*/ + 118/*v*/ + 98/*b*/;
+	string template = "pvb"; // Penis vagina breasts
 	integer out; integer i = bitsTags != [];
 	while( i-- ){
 		// bits may include an additional size tag, so we'll have to remove that
-		integer pos = llListFindList(template, (list)llOrd(llList2String(bitsTags, i), 0));
+		integer pos = llSubStringIndex(template, llGetSubString(llList2String(bitsTags, i), 0, 0));
 		if( ~pos )
 			out = out | (1<<pos);
 		
