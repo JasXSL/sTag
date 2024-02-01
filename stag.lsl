@@ -7,25 +7,33 @@
 #ifndef __stag
 #define __stag
 	
+
 /*
 	Parses an avatar by ID and returns a list of tags
+	If defaultVal is set, and the avatar doesn't have the tag, or isn't wearing any sTag objects, defaultVal is returned
 	id : UUID of avatar
 	category : (Optional)If category is not empty, only gets tags starting with the specified category, and the category is omitted from the results to save some memory.
 */
-list sTagAv( key id, string category ){
+list sTagAv( key id, string category, list defaultVal ){
     
     list l = llGetAttachedList(id);
     list out; integer i = (l != []);
-    while( i-- )
-        out += sTag(
+	list add;
+    while( i-- ){
+        
+		out += sTag(
             llList2String(llGetObjectDetails(llList2Key(l, i), (list)OBJECT_DESC), 0),
             category
         );
+
+	}
+	if( out == [] )
+		return defaultVal;
     return out;
     
 }
 /*
-	Same as above but targets a single object description string
+	Returns all tags from a description string. If category is empty, it only returns those tags, and removes the category from the tags to save memory.
 */
 list sTag( string desc, string category ){
     
@@ -74,8 +82,44 @@ list sTag( string desc, string category ){
         }
         
     }
+	
     return out;
     
+}
+
+
+/*
+	Returns TRUE if id has at least one object with sTag on it
+	This is mainly for testing. You're better off using sTagAv without checking for the existence of sTag
+*/
+integer sTagExists( key id ){
+
+	list l = llGetAttachedList(id);
+	list out; integer i = (l != []);
+	while( i-- ){
+		
+		list spl = llParseString2List(
+			llList2String(
+				llGetObjectDetails(
+					llList2Key(l, i),
+					(list)OBJECT_DESC
+				),
+				0
+			),
+			(list)"$$",
+			[]
+		);
+		integer n = spl != [];
+		while( n-- ){
+			
+			if( llGetSubString(llList2String(spl, n), 0, 3) == "TAG$" )
+				return TRUE;
+			
+		}
+		
+	}
+	return FALSE;
+	
 }
 
 
