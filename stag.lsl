@@ -154,6 +154,14 @@ integer sTagExists( key id ){
 #define sTag$body_type( targ ) sTagAv(targ, "bdytpe", ["biped"], 1)
 #define sTag$bdytpe( targ ) sTagAv(targ, "bdytpe", ["biped"], 1)
 
+#define sTag$body_fat( targ ) sTagAv(targ, "bdyfat", ["bdyfat_average"], 1)
+#define sTag$bdyfat( targ ) sTagAv(targ, "bdyfat", ["bdyfat_average"], 1)
+
+#define sTag$body_muscle( targ ) sTagAv(targ, "bdymscl", ["bdymscl_average"], 1)
+#define sTag$bdymscl( targ ) sTagAv(targ, "bdymscl", ["bdymscl_average"], 1)
+
+
+
 #define sTag$outfit( targ ) sTagAv(targ, "ofit", [], 0)
 #define sTag$ofit( targ ) sTagAv(targ, "ofit", [], 0)
 
