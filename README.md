@@ -8,7 +8,7 @@ We picked the double and single dollar-separated syntax because of the free JasX
 
 # Specification
 
-- A tag consists of two parts separated by an underscore: <category>_<value> - For example: species_fox or species_human
+- A tag consists of two parts separated by an underscore: `<category>_<value>` - For example: species_fox or species_human
 - A category may have underscores of its own to denote one or more subcategories, for example: hair_color_black, or hair_length_short
 - Each category may be specified to be present ONE or MULTIPLE times. For an instance, species_ may only be set once, whereas fur_color_ may be present multiple times for multi-colored avatars.
 - A category may have a default value, specified in the tag list. For example, if species_ is not set, then the script should assume that the species is human.
@@ -26,8 +26,16 @@ We picked the double and single dollar-separated syntax because of the free JasX
 - If you want to add other data to the description you may separate the tag block with $$ - For example: `myCustomDescriptionData$$TAG$species_fox$$some more custom description`. In essence, the parser will split the description by $$ and check each slice for TAG$ 
 
 # User setup
-The simplest way is to 
+
+1. The simplest way is to edit the description of the body part or clothing you want to tag. That way you know you have the correct tags whenever you wear that avatar or outfit. 
+  - If your attachment is no-mod, I recommend adding and wearing an invisible object alongside that body part or piece of clothing with the same name except _tags appended to it.
+  - The tagging system only works for root prims, not for links.
+  - If you are actively wearing the object you're modifying, you will need to right click it from your inventory and set the description from the object properties, otherwise the description won't save. You will also need to re-attach said attachment or relog for the in-world description to update.
+2. Type in your tags. For an instance, if you're wearing a female fox body, you could edit it and set the description to `TAG$sex_female$species_fox`
+3. For a very basic setup, that's all you need to do. Since avatar sex and species are by far the most important tags for developers. However, if you want to get more in depth, you should check out the `<pg tag list that will be added here later>`. And if you want to get a bit more lewd, check out the `<adult tag list that will be added here later>`.
 
 
 # Developer setup
+
+Todo: Write some code
 
