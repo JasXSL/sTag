@@ -7,6 +7,7 @@ Legend:
   - X/Y/Z : The value can be one of these. Note that many of these may be subject to interpretation. Just make an estimate and it'll work out!
   - X,Y,Z : The value should be an ordered CSV following this pattern.
   - X,Y,Z... : The value should be an ordered CSV but has a variable amount of entries specified by the user.
+  - On the values listed as none/tiny/small/average/large/huge you can shorten them to n/t/s/a/l/h
 - Default value: The default value that scripters should expect if the tag is not set on an avatar. **If your avatar matches the default value, you should not add the tag to your avatar.**
   - DEVELOPER_DEFINED : The handling of a missing tag is up to the individual developer.
   - N/A : Not applicable, or doesn't exist. If a field is N/A, the scripter should not make assumptions about the field.
