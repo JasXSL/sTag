@@ -40,7 +40,7 @@ These are tags that many developers will incorporate to add some depth to their 
   <tr><th>Category</th><th>Value</th><th>Default Value</th><th>Quant</th><th>Example</th><th>Recommended Point</th><th>Explanation</th></tr>
   
   <tr><td colspan="7">Body characteristics</td></tr>
-  <tr> <td>subspec</td> <td>USER_DEFINED</td> <td>N/A</td> <td>MULTIPLE</td> <td>subspec_equine</td> <td>Body</td> <td>Gives NPCs a bit more leeway when determining your species. Like if an NPC wants to have a cat specific reaction, it could check for subspecies_equine instead of keeping a list of every type of cat for the species tag.</td> </tr>
+  <tr> <td>subspec</td> <td>USER_DEFINED</td> <td>N/A</td> <td>MULTIPLE</td> <td>subspec_equine</td> <td>Body</td> <td>Gives NPCs a bit more leeway when determining your species. Like if an NPC wants to have a cat specific reaction, it could check for subspec_equine instead of keeping a list of every type of cat for the species tag.</td> </tr>
   <tr> <td>tail</td> <td>none/tiny/small/average/large/huge</td> <td>NONE</td> <td>SINGLE</td> <td>tail_nub</td> <td>Tail</td> <td>Tail type.</td> </tr>
   <tr> <td>hair</td> <td>none/tiny/small/average/large/huge</td> <td>N/A</td> <td>SINGLE</td> <td>hair_long</td> <td>Hair</td> <td>Hair type.</td> </tr>
   <tr> <td>bdycoat</td> <td>fur/scales</td> <td>bdycoat_skin</td> <td>MULTIPLE</td> <td>bdycoat_fur</td> <td>Body</td> <td>Skin/fur type</td> </tr>
