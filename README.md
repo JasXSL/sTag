@@ -82,10 +82,11 @@ So you've run into issues where you're running out of space in your description.
 ### Usage
 
 - **Read a specific category using a preprocessor macro (recommended): `sTag$body_coat( targ )` -> `["skin"]`**
-  - Macros are recommended beacause they have any default return values built into the macro.
-- Read a specific category (note that the category is removed from the response to save memory): `list tags = sTagAv(uuid, "fur", []);` -> `["orange","white","black"]`
-- Read a specific category and provide a default response: `list tags = sTagAv(uuid, "body_coat", ["skin"]);` -> `["skin"]`
+  - Macros are recommended beacause they have any default return values built into the macro, and also limits results to 1 for tags that are set to SINGLE.
+- Read a specific category (note that the category is removed from the response to save memory): `list tags = sTagAv(uuid, "fur", [], 0);` -> `["orange","white","black"]`
+- Read a specific category and provide a default response: `list tags = sTagAv(uuid, "body_coat", ["skin"], 0);` -> `["skin"]`
   - Note that the default value is returned verbatim. See the [PG Tag List](/tags/PG.md) for expected default values by category.
-- Read ALL tags from an avatar (not recommended, may be very memory intensive): `list tags = sTagAv(uuid, "", [])` -> `["species_fox","fur_orange","fur_white","fur_black"]`
+- Read ALL tags from an avatar (not recommended, may be very memory intensive): `list tags = sTagAv(uuid, "", [], 0)` -> `["species_fox","fur_orange","fur_white","fur_black"]`
+- Note: The sTagAv is setup as `list sTagAv( key uuid, string category, list defaults, integer max_results )`
 
 
