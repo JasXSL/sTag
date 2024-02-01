@@ -45,7 +45,7 @@ These are tags that many developers will incorporate to add some depth to their 
 
 
   <tr><td colspan="7">Body characteristics</td></tr>
-  <tr> <td>butt_size</td> <td>none/tiny/average/large/huge</td> <td>butt_average</td> <td>SINGLE</td> <td>butt_none</td> <td>Body</td> <td>Sets butt size. Comes with a "none" setting for avatars such as slimes, robots etc.</td> </tr>
+  <tr> <td>butt_size</td> <td>none/tiny/small/average/large/huge</td> <td>butt_average</td> <td>SINGLE</td> <td>butt_none</td> <td>Body</td> <td>Sets butt size. Comes with a "none" setting for avatars such as slimes, robots etc.</td> </tr>
 
   
   <tr><td colspan="7">Clothing</td></tr>
