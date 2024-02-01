@@ -27,7 +27,7 @@ These are tags that most users SHOULD use. If you add any tags at all, add these
   <tr><th>Category</th><th>Value</th><th>Default Value</th><th>Quant</th><th>Example</th><th>Recommended Point</th><th>Comment</th></tr>
 
   <tr> <td>bits</td> <td>vagina/breasts/penis</td> <td>N/A</td> <td>MULTIPLE</td> <td>bits_breasts</td> <td>Body</td> <td></td> </tr>
-  <tr><td colspan="7">You may additionally append <pre>_<size></size></pre> to the breasts/penis tags to denote size. Viable size values are <pre>tiny/small/average/large/huge</pre>. Ex: <pre>bits_breasts_large</pre>. Devs can check for the presence of bits_breasts for existence.</td></tr>
+  <tr><td colspan="7">You may additionally append <code>_<size></size></code> to the breasts/penis tags to denote size. Viable size values are <code>tiny/small/average/large/huge</code>. Ex: <code>bits_breasts_large</code>. Devs can check for the presence of bits_breasts for existence.</td></tr>
 
 </table>
 
