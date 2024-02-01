@@ -49,7 +49,7 @@ These are tags that many developers will incorporate to add some depth to their 
   -->
   
   <tr><td colspan="7">Clothing</td></tr>
-  <tr> <td>This is an extension of the outfit category in PG:</td> <td colspan="6">
+  <tr> <td>This is an extension of the <code>outfit_</code> category in PG:</td> <td colspan="6">
     restraints, gag, groin exposed, breasts exposed, butt exposed (if your clothing leaves certain parts exposed, such as a jockstrap)
   </td> </tr>
   
@@ -70,7 +70,7 @@ Very few devs will use these due to their specificity. These can also include sy
   -->
   
   <tr><td colspan="7">Clothing</td></tr>
-  <tr> <td>Todo: Extend the PG tertiary list with adult stuff:</td> <td colspan="6">
+  <tr> <td>(outfit_) Todo: Extend the PG tertiary list with adult stuff:</td> <td colspan="6">
     What do you suggest?
   </td> </tr>
   
