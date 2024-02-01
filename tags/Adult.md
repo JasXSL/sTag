@@ -1,4 +1,4 @@
-### Warning: This is an appendix of adult-specific tags. These are only useful if you're making an adult project. See the PG sheet for the major list of tags.
+### Warning: This is an appendix to the PG tags, containing adult-specific tags. These are only useful if you're making an adult project. See the PG sheet for the majority of the tags.
 
 Legend:
 - Category: The tag category. Tags follow the syntax `<category>_<value>`
