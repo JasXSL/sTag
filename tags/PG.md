@@ -40,11 +40,11 @@ These are tags that many developers will incorporate to add some depth to their 
   
   <tr><td colspan="7">Body characteristics</td></tr>
   <tr> <td>subspec</td> <td>USER_DEFINED</td> <td>N/A</td> <td>MULTIPLE</td> <td>subspec_equine</td> <td>Body</td> <td>Gives NPCs a bit more leeway when determining your species. Like if an NPC wants to have a cat specific reaction, it could check for subspecies_equine instead of keeping a list of every type of cat for the species tag.</td> </tr>
-  <tr> <td>tailtpe</td> <td>nub/short/long/huge</td> <td>NONE</td> <td>SINGLE</td> <td>tailtpe_nub</td> <td>Tail</td> <td>Tail type.</td> </tr>
-  <tr> <td>hairtpe</td> <td>tiny/short/long/huge</td> <td>N/A</td> <td>SINGLE</td> <td>hairtpe_long</td> <td>Hair</td> <td>Hair type.</td> </tr>
+  <tr> <td>tail</td> <td>nub/short/long/huge</td> <td>NONE</td> <td>SINGLE</td> <td>tailtpe_nub</td> <td>Tail</td> <td>Tail type.</td> </tr>
+  <tr> <td>hair</td> <td>tiny/short/long/huge</td> <td>N/A</td> <td>SINGLE</td> <td>hairtpe_long</td> <td>Hair</td> <td>Hair type.</td> </tr>
   <tr> <td>bdycoat</td> <td>fur/scales</td> <td>bdycoat_skin</td> <td>MULTIPLE</td> <td>bdycoat_fur</td> <td>Body</td> <td>Skin/fur type</td> </tr>
-  <tr> <td>bdycolor</td> <td>USER_DEFINED</td> <td>N/A</td> <td>MULTIPLE</td> <td>bdyclr_orange</td> <td>Body</td> <td>When tagging multiple colors, tag them in order of significance.</td> </tr>
-  <tr> <td>bdytype</td> <td>quadruped/USER_DEFINED</td> <td>bdytype_biped</td> <td>SINGLE</td> <td>bdytype_quadruped</td> <td>Body</td> <td></td> </tr>
+  <tr> <td>bdyclr</td> <td>USER_DEFINED</td> <td>N/A</td> <td>MULTIPLE</td> <td>bdyclr_orange</td> <td>Body</td> <td>When tagging multiple colors, tag them in order of significance.</td> </tr>
+  <tr> <td>bdytpe</td> <td>quadruped/USER_DEFINED</td> <td>bdytpe_biped</td> <td>SINGLE</td> <td>bdytpe_quadruped</td> <td>Body</td> <td></td> </tr>
   
   
   <tr><td colspan="7">Clothing</td></tr>
