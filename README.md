@@ -14,7 +14,7 @@ We picked the double and single dollar-separated syntax because of the free JasX
 - A category may have a default value, specified in the tag list. For example, if species_ is not set, then the script should assume that the species is human.
 - A value may contain a set of data separated by commas, for example: pronouns_he,him,his - Which is an ordered list.
 - The official tag list is separated into two sections: PG and Adult. PG tags should be used by everyone, but don't expect Adult tags to be present unless your content is adult-oriented.
-- Tags and values may only include lowercase alphanumeric characters.
+- Tags and values may only include lowercase alphanumeric characters and spaces.
 - Each section's official tags list is separated into three categories based on importance: 
   - Primary: These are tags you absolutely SHOULD use. They relay the most widely used information, and scripters should take these into consideration when designing their systems. Things like avatar sex & species.
   - Secondary: These are tags that are recommended, but aren't as important as primary. These are things like whether your avatar has fur, hair, a tail etc.
