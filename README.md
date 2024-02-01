@@ -32,7 +32,7 @@ We picked the double and single dollar-separated syntax because of the free JasX
   - The tagging system only works for root prims, not for links.
   - If you are actively wearing the object you're modifying, you will need to right click it from your inventory and set the description from the object properties, otherwise the description won't save. You will also need to re-attach said attachment or relog for the in-world description to update.
 2. Type in your tags. For an instance, if you're wearing a female fox body, you could edit it and set the description to `TAG$sex_female$species_fox`
-3. For a very basic setup, that's all you need to do. Since avatar sex and species are by far the most important tags for developers. However, if you want to get more in depth, you should check out the `<pg tag list that will be added here later>`. And if you want to get a bit more lewd, check out the `<adult tag list that will be added here later>`.
+3. For a very basic setup, that's all you need to do. Since avatar sex and species are by far the most important tags for developers. However, if you want to get more in depth, you should check out the [PG Tag List](/tags/PG.md). And if you want to get a bit more lewd, check out the [Adult tag extension](/tags/Adult.md).
 
 
 # Developer setup
