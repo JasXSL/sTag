@@ -53,7 +53,7 @@ list sTag( string desc, string category ){
             integer n;
             for(; n < (sub != []); ++n ){
                 
-                string val = llList2String(sub, n);
+                string val = llToLower(llList2String(sub, n));
                 if( llOrd(val, 0) == 0x21 ){ // Check for !
                     
                     pre = llDeleteSubString(val, 0, 0);
@@ -123,5 +123,44 @@ integer sTagExists( key id ){
 }
 
 
+// Takes a standard none/tiny/average/large/huge value and converts it to an int of 0(none), 1(tiny) ... 5(huge), returns -1 if size is invalid
+#define sizeToInt( size ) llListFindList((list)"none" + "tiny" + "small" + "average" + "large" + "huge", (list)(size))
+
+/* Macros with any default values already set. These are only provided for Primary and Secondary categories. */
+
+#define sTag$species( targ ) sTagAv(targ, "species", [])
+#define sTag$sex( targ ) sTagAv(targ, "sex", [])
+#define sTag$pronouns( targ ) sTagAv(targ, "pronouns", [])
+#define sTag$subspecies( targ ) sTagAv(targ, "subspecies", [])
+#define sTag$tail_type( targ ) sTagAv(targ, "tail_type", [])
+#define sTag$hair_type( targ ) sTagAv(targ, "hair_type", [])
+#define sTag$body_coat( targ ) sTagAv(targ, "body_coat", ["skin"])
+#define sTag$body_color( targ ) sTagAv(targ, "body_color", [])
+#define sTag$body_type( targ ) sTagAv(targ, "body_type", ["biped"])
+#define sTag$outfit( targ ) sTagAv(targ, "outfit", [])
+
+
+
+/* Adult */
+// This converts bits to a JasX bitmask where 1 = penis, 2 = vagina, 4 = breasts
+integer _stbbm( list bitsTags ){
+	
+	list template = (list)"penis" + "vagina" + "breasts";
+	integer out; integer i = bitsTags != [];
+	while( i-- ){
+		// bits may include an additional size tag, so we'll have to remove that
+		string sub = llGetSubString(llList2String(template, i), 0, llSubStringIndex(llList2String(template, i), "_"));
+		integer pos = llListFindList(template, (list)sub);
+		if( ~pos )
+			out = out | (1<<pos);
+		
+	}
+	return out;
+	
+}
+
+#define sTag$bits( targ ) sTagAv(targ, "bits", [])
+#define sTag$bitsBitmask( targ ) _stbbm(sTagAv(targ, "bits", [])) // Converts bits to a JasX standard genitals bitmask
+#define sTag$butt_size( targ ) sTagAv(targ, "butt_size", [])
 
 #endif
