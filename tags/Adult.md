@@ -43,10 +43,10 @@ These are tags that many developers will incorporate to add some depth to their 
   
   <tr><th>Category</th><th>Value</th><th>Default Value</th><th>Quant</th><th>Example</th><th>Recommended Point</th><th>Comment</th></tr>
 
-  <!--
+
   <tr><td colspan="7">Body characteristics</td></tr>
-  <tr> <td>breast_size</td> <td>tiny/small/average/large/huge</td> <td>N/A</td> <td>SINGLE</td> <td>breast_size_large</td> <td>Body</td> <td>Do not rely on breasts being present if this tag is set, always check for the bits tag first!</td> </tr>
-  -->
+  <tr> <td>butt_size</td> <td>none/tiny/average/large/huge</td> <td>butt_average</td> <td>SINGLE</td> <td>butt_none</td> <td>Body</td> <td>Sets butt size. Comes with a "none" setting for avatars such as slimes, robots etc.</td> </tr>
+
   
   <tr><td colspan="7">Clothing</td></tr>
   <tr> <td>This is an extension of the <code>outfit_</code> category in PG:</td> <td colspan="6">
