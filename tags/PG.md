@@ -76,7 +76,7 @@ Very few devs will use these due to their specificity. These can also include sy
   <tr> <td>Standard Secondary outfit values (prefix with outfit_):</td> <td colspan="6">
     jeans, khakis, tank top, thong, sling bikini, breastplate, crotchplate
   </td> </tr>
-  <tr> <td>Note: if you wish to include a material, you may do so by appending <code>_<material></code> to the tag. This goes for the Secondary outfit tags too, ex <code>outfit_leather_pants</code> or <code>outfit_steel_breastplate</code>:</td> <td colspan="6">
+  <tr> <td>Note: if you wish to include a material, you may do so by appending <code>_&lt;material&gt;</code> to the tag. This goes for the Secondary outfit tags too, ex <code>outfit_pants_leather</code> or <code>outfit_breastplate_steel</code>:</td> <td colspan="6">
     jeans, khakis, tank top, thong, sling bikini... todo: suggest more standard options here
   </td> </tr>
   
