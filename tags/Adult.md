@@ -65,15 +65,18 @@ Very few devs will use these due to their specificity. These can also include sy
   
   <tr><th>Category</th><th>Value</th><th>Default Value</th><th>Quant</th><th>Example</th><th>Recommended Point</th><th>Explanation</th></tr>
 
-  <!--
-  <tr><td colspan="7">Body characteristics</td></tr>
-  <tr> <td>hair_color</td> <td>USER_DEFINED</td> <td>N/A</td> <td>MULTIPLE</td> <td>hair_color_black</td> <td>Hair</td> <td>Name of the color of your hair.</td> </tr>
-  -->
+
+
+  <tr><th colspan="7">Mind characteristics. Note to devs: These are purely to tailor games to users interests. They're a bit fiddly to setup, and I don't think a lot of people will go around with these publicly. But I'm leaving them in here as a tertiary tag. In addition to n/t/s/a/l/h, you can shorten entirely to e.</th></tr>
+  <tr> <td>mdom</td> <td>none/tiny/small/average/large/huge/entirely</td> <td>N/A</td> <td>SINGLE</td> <td>mdom_average</td> <td>Head/Body/Dedicated preference prim</td> <td>Sets character sexual dominance, none being fully submissive, and average being a switch.</td> </tr>
+  <tr> <td>mkink</td> <td>USER_DEFINED</td> <td>N/A</td> <td>MULTIPLE</td> <td>mkink_spanking_huge</td> <td>Head/Body/Dedicated preference prim</td> <td>Adds character kinks. Think of this as a public F-list. You may append a non/tiny/small/average/large/huge/entirely value based on how much you like it. For a list of kinks I'd suggest copying from f-list directly.</td> </tr>
   
-  <tr><td colspan="7">Clothing</td></tr>
+  
+  <tr><th colspan="7">Clothing</th></tr>
   <tr> <td>(ofit_) Todo: Extend the PG tertiary list with adult stuff:</td> <td colspan="6">
     What do you suggest?
   </td> </tr>
+
   
   
 </table>
