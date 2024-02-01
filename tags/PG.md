@@ -20,11 +20,15 @@ Legend:
 ### Primary Tags
 These are tags that most users SHOULD use. If you set up any tags at all, set these up.
 
-| Category | Value | Default Value | Quant | Example | Recommended Point | Explanation |
-| --- | --- | --- | --- | --- | --- | --- |
-| spec | USER_DEFINED | N/A | SINGLE | spec_human | Body | Sets your avatar's species. |
-| sex | male/female/USER_DEFINED | N/A | SINGLE | sex_male | Body | Sets your avatars physical sex. Note: The adult tagset has a "bits" tag which is more granular than this, and should be prioritized over this tag for adult projects. |
-| pnoun | he,him,his / she,her,her / USER_DEFINED | DEVELOPER_DEFINED | SINGLE | pnoun_he,him,his | Body | Most users can omit this tag. The default value is left up to individual devs, because I'm not touching this subject. If you're not happy with the dev's implementation you can set it explicitly. Assuming the pronouns are he,him,his, the examples in order would be pronouns that fit "he is a cat", "it's him, the cat", "it's his cat". |
+<table>
+  
+  <tr><th>Category</th><th>Value</th><th>Default Value</th><th>Quant</th><th>Example</th><th>Recommended Point</th><th>Comment</th></tr>
+  
+  <tr> <td>spec</td> <td>USER_DEFINED</td> <td>N/A</td> <td>SINGLE</td> <td>spec_human</td> <td>Body</td> <td>Sets your avatar's species.</td> </tr> 
+  <tr> <td>subspec</td> <td>USER_DEFINED</td> <td>N/A</td> <td>MULTIPLE</td> <td>subspec_equine</td> <td>Body</td> <td>Gives NPCs a bit more leeway when determining your species. Like if an NPC wants to have a cat specific reaction, it could check for subspec_equine instead of keeping a list of every type of cat for the species tag.</td> </tr>
+  <tr> <td>sex</td> <td>male/female/USER_DEFINED</td> <td>N/A</td> <td>SINGLE</td> <td>sex_male</td> <td>Body</td> <td>Sets your avatars physical sex. Note: The adult tagset has a "bits" tag which is more granular than this, and should be prioritized over this tag for adult projects. </td></tr>
+  <tr> <td>pnoun</td> <td>he,him,his / she,her,her / USER_DEFINED</td> <td>DEVELOPER_DEFINED</td> <td>SINGLE</td> <td>pnoun_he,him,his</td> <td>Body</td> <td>Most users can omit this tag. The default value is left up to individual devs, because I'm not touching this subject. If you're not happy with the dev's implementation you can set it explicitly. Assuming the pronouns are he,him,his, the examples in order would be pronouns that fit "he is a cat", "it's him, the cat", "it's his cat". </td></tr>
+</table>
 
 
 
@@ -39,8 +43,7 @@ These are tags that many developers will incorporate to add some depth to their 
   
   <tr><th>Category</th><th>Value</th><th>Default Value</th><th>Quant</th><th>Example</th><th>Recommended Point</th><th>Explanation</th></tr>
   
-  <tr><td colspan="7">Body characteristics</td></tr>
-  <tr> <td>subspec</td> <td>USER_DEFINED</td> <td>N/A</td> <td>MULTIPLE</td> <td>subspec_equine</td> <td>Body</td> <td>Gives NPCs a bit more leeway when determining your species. Like if an NPC wants to have a cat specific reaction, it could check for subspec_equine instead of keeping a list of every type of cat for the species tag.</td> </tr>
+  <tr><td colspan="7">Body characteristics</td></tr
   <tr> <td>tail</td> <td>none/tiny/small/average/large/huge</td> <td>NONE</td> <td>SINGLE</td> <td>tail_nub</td> <td>Tail</td> <td>Tail type.</td> </tr>
   <tr> <td>hair</td> <td>none/tiny/small/average/large/huge</td> <td>N/A</td> <td>SINGLE</td> <td>hair_long</td> <td>Hair</td> <td>Hair type.</td> </tr>
   <tr> <td>bdycoat</td> <td>fur/scales</td> <td>bdycoat_skin</td> <td>MULTIPLE</td> <td>bdycoat_fur</td> <td>Body</td> <td>Skin/fur type</td> </tr>
