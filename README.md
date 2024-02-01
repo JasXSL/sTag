@@ -27,12 +27,7 @@ We picked the double and single dollar-separated syntax because of the free JasX
 
 # User setup
 
-1. The simplest way is to edit the description of the body part or clothing you want to tag. That way you know you have the correct tags whenever you wear that avatar or outfit. 
-  - If your attachment is no-mod, I recommend adding and wearing an invisible object alongside that body part or piece of clothing with the same name except _tags appended to it. Note that an attachment that shows as no-mod in your inventory may actually be editable when rezzed in world.
-  - The tagging system only works for root prims, not for links.
-  - If you are actively wearing the object you're modifying, you will need to right click it from your inventory and set the description from the object properties, otherwise the description won't save. You will also need to re-attach said attachment or relog for the in-world description to update.
-2. Type in your tags. For an instance, if you're wearing a female fox body, you could edit it and set the description to `TAG$sex_female$spec_fox`.
-3. For a very basic setup, that's all you need to do. Since avatar sex and species are by far the most important tags for developers. However, if you want to get more in depth, you should check out the [PG Tag List](/tags/PG.md). And if you want to get a bit more lewd, check out the [Adult tag extension](/tags/Adult.md).
+All you need to do is add tags to your attachment object descriptions.
 
 ### Writing tags quick start guide:
 
