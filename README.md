@@ -37,14 +37,14 @@ We picked the double and single dollar-separated syntax because of the free JasX
 
 # Developer setup
 
-### Manually
-
-1. Copy the functions you want to use from [stag.lsl](/stag.lsl).
-
-### Using git and the firestorm preprocessor (recommended for easy updates)
-
+### Using git and the firestorm preprocessor (recommended)
 1. Clone the repo into your preprocessor includes folder (Such as C:\LSL)
 2. Include the stag.lsl file in your project like `#include "stag/stag.lsl"`
+
+### Manually
+
+1. Copy the functions (and macros) you want to use from [stag.lsl](/stag.lsl).
+
 
 ### Usage
 
