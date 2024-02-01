@@ -48,7 +48,7 @@ We picked the double and single dollar-separated syntax because of the free JasX
 
 ### Usage
 
-- Read a specific category using a preprocessor macro (recommended): `sTag$body_coat( targ )` -> `["skin"]`
+- **Read a specific category using a preprocessor macro (recommended): `sTag$body_coat( targ )` -> `["skin"]`**
   - Macros are recommended beacause they have any default return values built into the macro.
 - Read a specific category (note that the category is removed from the response to save memory): `list tags = sTagAv(uuid, "fur", []);` -> `["orange","white","black"]`
 - Read a specific category and provide a default response: `list tags = sTagAv(uuid, "body_coat", ["skin"]);` -> `["skin"]`
