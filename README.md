@@ -37,5 +37,20 @@ We picked the double and single dollar-separated syntax because of the free JasX
 
 # Developer setup
 
-Todo: Write some code
+### Manually
+
+1. Copy the functions you want to use from [stag.lsl](/stag.lsl).
+
+### Using git and the firestorm preprocessor (recommended for easy updates)
+
+1. Clone the repo into your preprocessor includes folder (Such as C:\LSL)
+2. Include the stag.lsl file in your project like `#include "stag/stag.lsl"`
+
+### Usage
+
+- Read a specific category (recommended, note that the category is removed from the response to save memory): `list tags = sTagAv(uuid, "fur", []);` -> `["orange","white","black"]`
+- Read a specific category and provide a default response: `list tags = sTagAv(uuid, "body_coat", ["skin"]);` -> `["skin"]`
+  - Note that the default value is returned verbatim. See the [PG Tag List](/tags/PG.md) for expected default values by category.
+- Read ALL tags from an avatar: `list tags = sTagAv(uuid, "", [])` -> `["species_fox","fur_orange","fur_white","fur_black"]`
+
 
