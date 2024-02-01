@@ -76,11 +76,11 @@ Very few devs will use these due to their specificity. These can also include sy
   
   
   <tr><th colspan="7">Clothing</th></tr>
-  <tr> <td>outfit</td> <td>USER_DEFINED</td> <td>NONE</td> <td>MULTIPLE</td> <td>outfit_tank top</td> <td>Outfit</td> <td>The Tertiary outfit tag should contain specific information about your outfit. The values below are standardized.</td> </tr>
-  <tr> <td>Standard Secondary outfit values (prefix with outfit_):</td> <td colspan="6">
+  <tr> <td>ofit</td> <td>USER_DEFINED</td> <td>NONE</td> <td>MULTIPLE</td> <td>ofit_tank top</td> <td>Outfit</td> <td>The Tertiary outfit tag should contain specific information about your outfit. The values below are standardized.</td> </tr>
+  <tr> <td>Standard Secondary outfit values (prefix with ofit_):</td> <td colspan="6">
     jeans, khakis, tank top, thong, sling bikini, breastplate, crotchplate
   </td> </tr>
-  <tr> <td>Note: if you wish to include a material, you may do so by appending <code>_&lt;material&gt;</code> to the tag. This goes for the Secondary outfit tags too, ex <code>outfit_pants_leather</code> or <code>outfit_breastplate_steel</code>:</td> <td colspan="6">
+  <tr> <td>Note: if you wish to include a material, you may do so by appending <code>_&lt;material&gt;</code> to the tag. This goes for the Secondary outfit tags too, ex <code>ofit_pants_leather</code> or <code>ofit_breastplate_steel</code>:</td> <td colspan="6">
     jeans, khakis, tank top, thong, sling bikini... todo: suggest more standard options here
   </td> </tr>
   
