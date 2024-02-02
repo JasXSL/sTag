@@ -27,8 +27,8 @@ These are tags that most users SHOULD use. If you add any tags at all, add these
  
   <tr><th>Category</th><th>Value</th><th>Default Value</th><th>Quant</th><th>Example</th><th>Recommended Point</th><th>Comment</th></tr>
 
-  <tr> <td>bits</td> <td>vagina/breasts/penis, v/b/p for short</td> <td>N/A</td> <td>MULTIPLE</td> <td>bits_breasts</td> <td>Body</td> <td>Devs should only check the first character of the genitals.</td> </tr>
-  <tr><td colspan="7">You may additionally append <code>_&lt;size&gt;</size></code> to the breasts/penis tags to denote size. Viable size values are <code>tiny/small/average/large/huge</code>. Ex: <code>bits_breasts_large</code> or <code>bits_b_l</code> for short.</td></tr>
+  <tr> <td>bits</td> <td>vagina/breasts/penis/rear/testicles, v/b/p/r/t for short</td> <td>rear_average, testicles_average</td> <td>MULTIPLE</td> <td>bits_breasts</td> <td>Body</td> <td>Devs should only check the first character of the genitals. Rear and testicles may also be set to "none" or "n" for short, since they're assumed to be set to average by default.</td> </tr>
+  <tr><td colspan="7">You may additionally append <code>_&lt;size&gt;</size></code> to the all tags except vagina to denote size. Viable size values are <code>tiny/small/average/large/huge</code>. Ex: <code>bits_breasts_large</code> or <code>bits_b_l</code> for short.</td></tr>
 
 </table>
 
@@ -43,12 +43,7 @@ These are tags that many developers will incorporate to add some depth to their 
 <table>
   
   <tr><th>Category</th><th>Value</th><th>Default Value</th><th>Quant</th><th>Example</th><th>Recommended Point</th><th>Comment</th></tr>
-
-
-  <tr><td colspan="7">Body characteristics</td></tr>
-  <tr> <td>butt</td> <td>none/tiny/small/average/large/huge</td> <td>butt_average</td> <td>SINGLE</td> <td>butt_none</td> <td>Body</td> <td>Sets butt size. Comes with a "none" setting for avatars such as slimes, robots etc.</td> </tr>
-
-  
+ 
   <tr><td colspan="7">Clothing</td></tr>
   <tr> <td>This is an extension of the <code>ofit_</code> category in PG:</td> <td colspan="6">
     restraints, gag, groin exposed, breasts exposed, butt exposed (if your clothing leaves certain parts exposed, such as a jockstrap)
