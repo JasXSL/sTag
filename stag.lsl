@@ -127,9 +127,9 @@ integer sTagExists( key id ){
 }
 
 
-// Takes a standard none/tiny/average/large/huge value and converts it to an int of 0(none), 1(tiny) ... 5(huge). returns -1 if not found
+// Takes a standard none/tiny/average/large/huge value and converts it to an int of 0(none), 1(tiny) ... 5(huge). Some categories can also use 6(entirely) returns -1 if not found
 // Note that this only works when the size identifier starts off the string. So bits size uses a different method further down.
-#define sTag$sizeToInt( size ) llSubStringIndex("ntsalh", llGetSubString(size, 0, 0))
+#define sTag$sizeToInt( size ) llSubStringIndex("ntsalhe", llGetSubString(size, 0, 0))
 
 /* Macros with any default values already set. These are only provided for Primary and Secondary categories. */
 
@@ -171,36 +171,86 @@ integer sTagExists( key id ){
 
 
 /* Adult */
-// This converts bits to a JasX bitmask where 1 = penis, 2 = vagina, 4 = breasts
-integer _stbbm( list bitsTags ){
+/*
+	Getting bodypart size is done through the bits category.
+	Since avatar scanning can be slow if done a lot, I strongly recommend using sTag$getBitsPacked, which will return an integer as a 4-bit array:
+	integer bits = sTag$getBitsPacked(uuid);
+	Then you can extract the genital sizes by using the sTag$<genital>Size macros, except for vagina which is just sTag$vagina since it doesn't support the size tags:
+	integer penisSize = sTag$penisSize(bits); // 0 = none, 1 = tiny, 3 = average, 5 = huge etc.
 	
-	string template = "pvb"; // Penis vagina breasts
-	integer out; integer i = bitsTags != [];
+	If your project isn't adult, you may try to infer genitals from the PG sex tag as a fallback. In that case use sTag$getBitsPackedInfer(). 
+	However, this uses more memory, so you may want to REQUIRE use of the adult tags in your project.
+*/
+#define sTag$getBitsPacked(id) _stgb(sTag$bits(id))
+#define sTag$getBitsPackedInfer(id) _stib(id)
+#define sTag$bits( targ ) sTagAv(targ, "bits", [], 0) // gets all bits tags. I recommend using getBitsPacked, because it manages sizes for you
+
+// Offsets in the packed bits array
+#define sTag$bitoffs$penis 0
+#define sTag$bitoffs$vagina 4
+#define sTag$bitoffs$breasts 8
+#define sTag$bitoffs$rear 12
+#define sTag$bitoffs$testicles 16
+
+#define sTag$penisSize( bitmask ) (bitmask&0xF)
+#define sTag$vagina( bitmask ) ((bitmask&(0xF<<sTag$bitoffs$vagina))>0)
+#define sTag$breastsSize( bitmask ) ((bitmask&(0xF<<sTag$bitoffs$breasts))>>sTag$bitoffs$breasts)
+#define sTag$rearSize( bitmask ) ((bitmask&(0xF<<sTag$bitoffs$rear))>>sTag$bitoffs$rear)
+#define sTag$testiclesSize( bitmask ) ((bitmask&(0xF<<sTag$bitoffs$testicles))>>sTag$bitoffs$testicles)
+
+// Genital functions
+integer _stgb( list tags ){
+
+	integer out = (3<<sTag$bitoffs$rear)|(0xF<<sTag$bitoffs$testicles); // default butt and testicles
+	integer i = tags != [];
 	while( i-- ){
-		// bits may include an additional size tag, so we'll have to remove that
-		integer pos = llSubStringIndex(template, llGetSubString(llList2String(bitsTags, i), 0, 0));
-		if( ~pos )
-			out = out | (1<<pos);
+		
+		string tag = llList2String(tags, i);
+		integer pos = llSubStringIndex("pvbrt", llGetSubString(tag, 0, 0));
+		if( ~pos ){
+		
+			integer us = llSubStringIndex(tag, "_");
+			// ntsmalh
+			integer size = 3;
+			if( ~us )
+				size = sTag$sizeToInt(llGetSubString(tag, us+1,us+1));
+			
+			out = out & ~(0xF<<(pos*4)) | (size<<(pos*4));
+
+		}
 		
 	}
+	
+	// If penis is set, but not testicles, set testicles to 3
+	int t = sTag$testiclesSize(out);
+	if( t == 0xF )
+		t = 3*(sTag$penisSize(out)>0);
+	out = out & ~(0xF<<sTag$bitoffs$testicles) | (t<<sTag$bitoffs$testicles);
+
+	return out;
+}
+
+integer _stib( key id ){
+	
+	list tags = sTag$bits(id);
+	if( tags )
+		return _stgb(tags);
+	// No adult tags set. Let's try infering it.
+	string sex = llList2String(sTag$sex(id), 0);
+	integer out = 3<<sTag$bitoffs$rear;
+	if( sex == "female" )
+		out = out | (3<<sTag$bitoffs$vagina)|(3<<sTag$bitoffs$breasts);
+	else if( sex == "male" )
+		out = out | (3<<sTag$bitoffs$penis)|(3<<sTag$bitoffs$rear);
 	return out;
 	
 }
 
-// Genital functions
-#define sTag$bits( targ ) sTagAv(targ, "bits", [], 0)
-#define sTag$bitsBitmask( targ ) _stbbm(sTagAv(targ, "bits", [], 0)) // Converts bits to a JasX standard genitals bitmask
-#define sTag$bitsSize(tag) /* Fetches a size value from a bits tag. Returns -1 if not found */ \
-	sTag$sizeToInt(llList2String(llParseString2List(tag, (list)"_", []), -1)) 
-#define sTag$genitalName(tag) /* Turns a genital tag into "penis", "vagina", or "breasts" */ \
-	llList2String((list) \
-		"penis" + "vagina" + "breasts", \
-		llListFindList( \
-			(list)112/*p*/ + 118/*v*/ + 98/*b*/,  \
-			(list)llOrd(tag, 0) \
-		) \
-	)
 
-#define sTag$butt( targ ) sTagAv(targ, "butt", [], 1)
+// this is 
+// returns a 4 bit array of genital sizes for id. You can use the sTag$<bit>Size() methods to turn this value into a number 
+
+
+#define sTag$bitsBitmask( targ ) _stbbm(sTagAv(targ, "bits", [], 0)) // Converts bits to a JasX standard genitals bitmask
 
 #endif
