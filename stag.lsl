@@ -131,39 +131,42 @@ integer sTagExists( key id ){
 // Note that this only works when the size identifier starts off the string. So bits size uses a different method further down.
 #define sTag$sizeToInt( size ) llSubStringIndex("ntsalhe", llGetSubString(size, 0, 0))
 
-/* Macros with any default values already set. These are only provided for Primary and Secondary categories. */
+/* 
+	Macros with any default values and single/multi already set. These are only provided for Primary and Secondary categories. 
+	If a category may only have a SINGLE item, that tag will be returned as a string or "" if not set
+*/
 
-#define sTag$species( targ ) sTagAv(targ, "spec", [], 1)
-#define sTag$spec( targ ) sTagAv(targ, "spec", [], 1)
+#define sTag$species( targ ) llList2String(sTagAv(targ, "spec", [], 1), 0)
+#define sTag$spec( targ ) sTag$species(targ)
 
-#define sTag$sex( targ ) sTagAv(targ, "sex", [], 1)
+#define sTag$sex( targ ) llList2String(sTagAv(targ, "sex", [], 1), 0)
 
-#define sTag$pronouns( targ ) sTagAv(targ, "pnoun", [], 1)
-#define sTag$pnoun( targ ) sTagAv(targ, "pnoun", [], 1)
+#define sTag$pronouns( targ ) llList2String(sTagAv(targ, "pnoun", [], 1), 0)
+#define sTag$pnoun( targ ) sTag$pronouns(targ)
 
-#define sTag$subspecies( targ ) sTagAv(targ, "subs", [], 1)
-#define sTag$subspec( targ ) sTagAv(targ, "subs", [], 1)
+#define sTag$subspecies( targ ) llList2String(sTagAv(targ, "subs", [], 1), 0)
+#define sTag$subspec( targ ) sTag$subspecies(targ)
 
-#define sTag$tail( targ ) sTagAv(targ, "tail", [], 1)
+#define sTag$tail( targ ) llList2String(sTagAv(targ, "tail", [], 1), 0)
 
-#define sTag$hair( targ ) sTagAv(targ, "hair", [], 1)
+#define sTag$hair( targ ) llList2String(sTagAv(targ, "hair", [], 1), 0)
 
 #define sTag$body_coat( targ ) sTagAv(targ, "bdycoat", ["skin"], 0)
-#define sTag$bdycoat( targ ) sTagAv(targ, "bdycoat", ["skin"], 0)
+#define sTag$bdycoat( targ ) sTag$body_coat(targ)
 
-#define sTag$body_type( targ ) sTagAv(targ, "bdytpe", ["biped"], 1)
-#define sTag$bdytpe( targ ) sTagAv(targ, "bdytpe", ["biped"], 1)
+#define sTag$body_type( targ ) llList2String(sTagAv(targ, "bdytpe", ["biped"], 1), 0)
+#define sTag$bdytpe( targ ) sTag$body_type(targ)
 
-#define sTag$body_fat( targ ) sTagAv(targ, "bdyfat", ["bdyfat_average"], 1)
-#define sTag$bdyfat( targ ) sTagAv(targ, "bdyfat", ["bdyfat_average"], 1)
+#define sTag$body_fat( targ ) llList2String(sTagAv(targ, "bdyfat", ["bdyfat_average"], 1), 0)
+#define sTag$bdyfat( targ ) sTag$body_fat(targ)
 
-#define sTag$body_muscle( targ ) sTagAv(targ, "bdymscl", ["bdymscl_average"], 1)
-#define sTag$bdymscl( targ ) sTagAv(targ, "bdymscl", ["bdymscl_average"], 1)
+#define sTag$body_muscle( targ ) llList2String(sTagAv(targ, "bdymscl", ["bdymscl_average"], 1), 0)
+#define sTag$bdymscl( targ ) sTag$body_muscle(targ)
 
 
 
 #define sTag$outfit( targ ) sTagAv(targ, "ofit", [], 0)
-#define sTag$ofit( targ ) sTagAv(targ, "ofit", [], 0)
+#define sTag$ofit( targ ) sTag$outfit(targ)
 
 
 
@@ -196,6 +199,7 @@ integer sTagExists( key id ){
 #define sTag$vagina( bitmask ) ((bitmask&(0xF<<sTag$bitoffs$vagina))>0)
 #define sTag$breastsSize( bitmask ) ((bitmask&(0xF<<sTag$bitoffs$breasts))>>sTag$bitoffs$breasts)
 #define sTag$rearSize( bitmask ) ((bitmask&(0xF<<sTag$bitoffs$rear))>>sTag$bitoffs$rear)
+#define sTag$buttSize( bitmask ) sTag$rearSize( bitmask )
 #define sTag$testiclesSize( bitmask ) ((bitmask&(0xF<<sTag$bitoffs$testicles))>>sTag$bitoffs$testicles)
 
 // Genital functions
