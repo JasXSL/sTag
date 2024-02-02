@@ -69,10 +69,9 @@ Very few devs will use these due to their specificity. These can also include sy
   <tr><th colspan="7">Body characteristics</th></tr>
   <tr> <td>hairclr</td> <td>USER_DEFINED</td> <td>N/A</td> <td>MULTIPLE</td> <td>hairclr_black</td> <td>Hair</td> <td>Name of the color of your hair.</td> </tr>
   <tr> <td>eyeclr</td> <td>USER_DEFINED</td> <td>N/A</td> <td>MULTIPLE</td> <td>eyeclr_green</td> <td>Head</td> <td>Name of the color of your eyes. If heterochromic, tag left first, then right.</td> </tr>
-  <tr> <td>hnd</td> <td></td> <td>N/A</td> <td>MULTIPLE</td> <td>hnd_claws</td> <td>Body/hands</td> <td>See below for standard values</td> </tr>
-  <tr> <td>The following are formulated as value:default As in, if value is not set, default value should be used.</td><td colspan="6">claws:NONE, 4fingers:5fingers, 3fingers:5fingers</td></tr>
   <tr> <td>bdyclr</td> <td>USER_DEFINED</td> <td>N/A</td> <td>MULTIPLE</td> <td>bdyclr_orange</td> <td>Body</td> <td>When tagging multiple colors, tag them in order of significance.</td> </tr>
-  <tr> <td>bdycat</td> <td>USER_DEFINED</td> <td>N/A</td> <td>MULTIPLE</td> <td>bdycat_mobian</td> <td>Body</td> <td>Can be used to denote artistic style of your body. Such as "my little pony", "anime" etc.</td> </tr>
+  <tr> <td>bdy</td> <td>USER_DEFINED</td> <td>N/A</td> <td>MULTIPLE</td> <td>bdy_tentacles</td> <td>Body</td> <td>These tags are for boolean values that should be set on your avatar. Such as bdy_tentacles, bdy_fangs, bdy_claws etc.</td> </tr>
+  
   
   
   <tr><th colspan="7">Clothing</th></tr>
