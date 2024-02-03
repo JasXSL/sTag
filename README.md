@@ -49,10 +49,9 @@ So you've run into issues where you're running out of space in your description.
 
 ### Adult tags: Genitals
 
-- The adult extension only has one primary tag (at time of writing): bits. This gives you more fine control over your settings, especially in JasX games that use genital flags instead of gender. Set one bits tag for each piece of genitalia relevant to your avatar. Example for female would be `TAG$bits_vagina$bits_breasts`. This can be shortened to the initials: `TAG$bits_v$bits_b`. If we add it to our body example above. The genital tags also lets you append a size tag (none/tiny/average/large/huge) like `TAG$bits_breasts_large`, and we can shorten both: `TAG$bits_b_l`. Putting it together with the rest of the body tags: `TAG$spec_fox$subs_vulpine$sex_female$hair_l$bdycoat_fur$bdyfat_l$!bits$b_l$v`.
-- For secondary tags we'll add a butt tag `butt_large` (shortened to `butt_l`). `TAG$spec_fox$subs_vulpine$sex_female$hair_l$bdycoat_fur$bdyfat_l$butt_large$!bits$b_l$v`. Note that I put it before the ! because even though you can cancel the active category by adding it with no category after it `TAG$!bits$b_l$!$butt_large`, it saves space if you put it before the first !
+- The adult extension only has one primary tag (at time of writing): bits. This gives you more fine control over your settings, especially in JasX games that use genital flags instead of gender. Set one bits tag for each piece of genitalia relevant to your avatar. Example for female would be `TAG$bits_vagina$bits_breasts`. This can be shortened to the initials: `TAG$bits_v$bits_b`. If we add it to our body example above. The genital tags also lets you append a size tag (none/tiny/average/large/huge) like `TAG$bits_breasts_large`, and we can shorten both: `TAG$bits_b_l`. We can also apply the rear (butt) tag if we want to specify a butt size `TAG$bits_rear_l` or `TAG$bits_r_l`. Putting it together with the rest of the body tags: `TAG$spec_fox$subs_vulpine$sex_female$hair_l$bdycoat_fur$bdyfat_l$!bits$b_l$v$r_l`.
 - That's basically it. The final shortened body description is as follows: 
-  `TAG$spec_fox$subs_vulpine$sex_female$hair_l$bdycoat_fur$bdyfat_l$butt_large$!bits$b_l$v` 
+  `TAG$spec_fox$subs_vulpine$sex_female$hair_l$bdycoat_fur$bdyfat_l$!bits$b_l$v$r_l` 
   To recap, this description says that: 
   - Our species is `fox`.
   - We belong to the `vulpine` category.
@@ -60,9 +59,8 @@ So you've run into issues where you're running out of space in your description.
   - We have large (long) hair.
   - We have fur.
   - We are chubby (large body fat).
-  - We have a big butt.
-  - We have a vagina, and large breasts.
-
+  - We have a vagina, large breasts, and big butt.
+  
 # Developer setup
 
 ### Using git and the firestorm preprocessor (recommended)
