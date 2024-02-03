@@ -196,11 +196,14 @@ integer sTagExists( key id ){
 #define sTag$bitoffs$testicles 16
 
 #define sTag$penisSize( bitmask ) (bitmask&0xF)
-#define sTag$vagina( bitmask ) ((bitmask&(0xF<<sTag$bitoffs$vagina))>0)
-#define sTag$breastsSize( bitmask ) ((bitmask&(0xF<<sTag$bitoffs$breasts))>>sTag$bitoffs$breasts)
-#define sTag$rearSize( bitmask ) ((bitmask&(0xF<<sTag$bitoffs$rear))>>sTag$bitoffs$rear)
+#define sTag$vagina( bitmask ) (((bitmask>>sTag$bitoffs$vagina)&0xF)>0)
+#define sTag$breastsSize( bitmask ) ((bitmask>>sTag$bitoffs$breasts)&0xF)
+#define sTag$rearSize( bitmask ) ((bitmask>>sTag$bitoffs$rear)&0xF)
 #define sTag$buttSize( bitmask ) sTag$rearSize( bitmask )
-#define sTag$testiclesSize( bitmask ) ((bitmask&(0xF<<sTag$bitoffs$testicles))>>sTag$bitoffs$testicles)
+#define sTag$testiclesSize( bitmask ) ((bitmask>>sTag$bitoffs$testicles)&0xF)
+
+
+#define sTag$genitalName( tag ) llList2String((list)"penis" + "vagina" + "breasts" + "rear" + "testicles", llSubStringIndex("pvbrt", llGetSubString(tag, 0, 0)))
 
 // Genital functions
 integer _stgb( list tags ){
@@ -226,7 +229,7 @@ integer _stgb( list tags ){
 	}
 	
 	// If penis is set, but not testicles, set testicles to 3
-	int t = sTag$testiclesSize(out);
+	integer t = sTag$testiclesSize(out);
 	if( t == 0xF )
 		t = 3*(sTag$penisSize(out)>0);
 	out = out & ~(0xF<<sTag$bitoffs$testicles) | (t<<sTag$bitoffs$testicles);

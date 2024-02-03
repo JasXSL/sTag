@@ -19,29 +19,24 @@ default
         key t = llGetOwner();
 		
 		llOwnerSay("Scanning "+llGetDisplayName(t));
-		output("Species", sTag$species(t));
-        output("Sex", sTag$sex(t));
-		output("Pronouns", sTag$pronouns(t));
-		output("Subspecies", sTag$subspecies(t));
-		output("Tail size (0-5)", (list)sTag$sizeToInt((string)sTag$tail(t)));
-		output("Hair size (0-5)", (list)sTag$sizeToInt((string)sTag$hair(t)));
+		output("Species", (list)sTag$species(t));
+        output("Sex", (list)sTag$sex(t));
+		output("Pronouns", (list)sTag$pronouns(t));
+		output("Subspecies", (list)sTag$subspecies(t));
+		output("Tail size (0-5)", (list)sTag$sizeToInt(sTag$tail(t)));
+		output("Hair size (0-5)", (list)sTag$sizeToInt(sTag$hair(t)));
 		output("Body coating", sTag$body_coat(t));
-		output("Body type", sTag$body_type(t));
-		output("Outfit tags", sTag$outfit(t));
-		output("Butt size (0-5)", (list)sTag$sizeToInt((string)sTag$butt(t)));
+		output("Body type", (list)sTag$body_type(t));
+		output("Outfit tags", (list)sTag$outfit(t));
 		
 		llOwnerSay("Genitals [type >> size]:");
-		list bits = sTag$bits( t );
-        integer i;
-        for(; i < (bits != []); ++i ){
-            string bit = llList2String(bits, i);
-            llOwnerSay(
-				"-- " +
-                sTag$genitalName(bit)+
-                " >> "+
-                (string)sTag$bitsSize(bit)
-            );
-        }
+		integer bits = sTag$getBitsPacked(t);
+		output("Penis size", (list)sTag$penisSize(bits));
+		output("Vagina", (list)sTag$vagina(bits));
+		output("Breasts size", (list)sTag$breastsSize(bits));
+		output("Rear size", (list)sTag$rearSize(bits));
+		output("Testicles size", (list)sTag$testiclesSize(bits));
+		
 		
     }
 }
