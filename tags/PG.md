@@ -46,6 +46,8 @@ These are tags that most users SHOULD use. If you set up any tags at all, set th
       <li>hat (helmets, etc)</li>
       <li>wrist (bracelets, watches etc)</li>
       <li>socks</li>
+      <li>belt</li>
+      <li>neck (collar, necklace etc)</li>
     </ul>  
     <b>Note: I'll need help expanding this</b>
   </td> </tr>
