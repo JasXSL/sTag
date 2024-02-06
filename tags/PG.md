@@ -30,7 +30,24 @@ These are tags that most users SHOULD use. If you set up any tags at all, set th
   <tr><td colspan="7">Clothing. Tagging your clothing is relatively important as otherwise NPCs and scripts may think you're naked! You should be fine with just one tag per piece of clothing!</td></tr>
   <tr> <td>ofit</td> <td>USER_DEFINED</td> <td>NONE</td> <td>MULTIPLE</td> <td>ofit_pants</td> <td>Outfit</td> <td>The Primary outfit tag should contain generalized information about your outfit, but you don't need to go overboard. The values below are standardized. Note: These tags may have subtags, see below.</td> </tr>
   <tr> <td>Standard Primary outfit values (prefix with ofit_):</td> <td colspan="6">
-    underpants (includes bikini bottoms/thongs/swimtrunks etc), pants, skirt, dress, bodysuit, bra (includes bikini tops), shirt, jacket, armor, leggings, gloves, glasses, hat, wrist. <b>Note: I'll need help expanding this</b>
+    <ul>
+      <li>underpants (includes bikini bottoms/thongs/swimtrunks etc)</li> 
+      <li>pants (includes shorts etc)</li> 
+      <li>skirt</li>
+      <li>dress</li>
+      <li>bodysuit (If it's not a dress and covers upper and lower body, it counts. Including one-piece swimsuits and overalls)</li>
+      <li>bra (includes bikini tops)</li>
+      <li>shirt</li>
+      <li>jacket (includes coats etc)</li>
+      <li>armor</li>
+      <li>leggings (if it's long socks pick this if it's longer than your knees)</li>
+      <li>gloves</li>
+      <li>glasses (goggles etc)</li>
+      <li>hat (helmets, etc)</li>
+      <li>wrist (bracelets, watches etc)</li>
+      <li>socks</li>
+    </ul>  
+    <b>Note: I'll need help expanding this</b>
   </td> </tr>
 </table>
 
