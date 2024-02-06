@@ -48,6 +48,7 @@ These are tags that most users SHOULD use. If you set up any tags at all, set th
       <li>socks</li>
       <li>belt</li>
       <li>neck (collar, necklace etc)</li>
+      <li>shoulder (shoulderplates etc)</li>
       <li>held (generic tag for anything you'r HOLDING)</li>
     </ul>  
     <b>Note: I'll need help expanding this</b>
