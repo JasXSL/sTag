@@ -28,9 +28,9 @@ These are tags that most users SHOULD use. If you set up any tags at all, set th
   <tr> <td>subs</td> <td>USER_DEFINED</td> <td>N/A</td> <td>MULTIPLE</td> <td>subs_equine</td> <td>Body</td> <td>Subspecies. Gives NPCs leeway when determining your species. Like if an NPC wants to have a cat specific reaction, it could check for subspec_equine instead of keeping a list of every type of cat for the species tag.</td> </tr>
   <tr> <td>sex</td> <td>male/female/USER_DEFINED</td> <td>N/A</td> <td>SINGLE</td> <td>sex_male</td> <td>Body</td> <td>Sets your avatars physical sex. Note: The adult tagset has a "bits" tag which is more granular than this, and should be prioritized over this tag for adult projects. </td></tr>
   <tr><td colspan="7">Clothing. Tagging your clothing is relatively important as otherwise NPCs and scripts may think you're naked! You should be fine with just one tag per piece of clothing!</td></tr>
-  <tr> <td>ofit</td> <td>USER_DEFINED</td> <td>NONE</td> <td>MULTIPLE</td> <td>ofit_pants</td> <td>Outfit</td> <td>The Primary outfit tag should contain generalized information about your outfit, but you don't need to go overboard. The values below are standardized. Note: There is also a Tertiary outfit tag with more granual data.</td> </tr>
-  <tr> <td>Standard Primary outfit values (prefix with outfit_):</td> <td colspan="6">
-    underpants (includes bikini bottoms/thongs/swimtrunks etc), skirt, dress, bodysuit, bra (includes bikini tops), shirt, jacket, armor, swimsuit, leggings, gloves, glasses, hat. <b>Note: I'll need help expanding this</b>
+  <tr> <td>ofit</td> <td>USER_DEFINED</td> <td>NONE</td> <td>MULTIPLE</td> <td>ofit_pants</td> <td>Outfit</td> <td>The Primary outfit tag should contain generalized information about your outfit, but you don't need to go overboard. The values below are standardized. Note: These tags may have subtags, see below.</td> </tr>
+  <tr> <td>Standard Primary outfit values (prefix with ofit_):</td> <td colspan="6">
+    underpants (includes bikini bottoms/thongs/swimtrunks etc), pants, skirt, dress, bodysuit, bra (includes bikini tops), shirt, jacket, armor, leggings, gloves, glasses, hat. <b>Note: I'll need help expanding this</b>
   </td> </tr>
 </table>
 
@@ -74,13 +74,10 @@ Very few devs will use these due to their specificity. These can also include sy
   
   
   
-  <tr><th colspan="7">Clothing</th></tr>
-  <tr> <td>ofit</td> <td>USER_DEFINED</td> <td>NONE</td> <td>MULTIPLE</td> <td>ofit_tank top</td> <td>Outfit</td> <td>The Tertiary outfit tag should contain specific information about your outfit. The values below are standardized.</td> </tr>
-  <tr> <td>Standard Secondary outfit values (prefix with ofit_):</td> <td colspan="6">
-    jeans, khakis, tank top, thong, sling bikini, breastplate, crotchplate
-  </td> </tr>
-  <tr> <td>Note: if you wish to include a material, you may do so by appending <code>_&lt;material&gt;</code> to the tag. This goes for the Secondary outfit tags too, ex <code>ofit_pants_leather</code> or <code>ofit_breastplate_steel</code>:</td> <td colspan="6">
-    jeans, khakis, tank top, thong, sling bikini... todo: suggest more standard options here
+  <tr><th colspan="7">Clothing subtags</th></tr>
+  <tr> <td>ofit</td> <td>USER_DEFINED</td> <td>NONE</td> <td>MULTIPLE</td> <td>ofit_tank top</td> <td>Outfit</td> <td>You may add multiple subtags to your ofit tags that describe a specific piece of clothing in more detail. For an example: ofit_pants_denim_tight means you're wearing pants, that are jeans and tight. The order after ofit_&lt;tag&gt;_ doesn't matter.</td> </tr>
+  <tr> <td>Standard ofit subtags (prefix with ofit_):</td> <td colspan="6">
+    denim, khakis, tank top, thong, sling bikini, breastplate, crotchplate, leather, metal, latex, tight, loose ... more recommendation are needed
   </td> </tr>
   
   
