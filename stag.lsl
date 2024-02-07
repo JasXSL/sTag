@@ -157,16 +157,49 @@ integer sTagExists( key id ){
 #define sTag$body_type( targ ) llList2String(sTagAv(targ, "bdytpe", ["biped"], 1), 0)
 #define sTag$bdytpe( targ ) sTag$body_type(targ)
 
-#define sTag$body_fat( targ ) llList2String(sTagAv(targ, "bdyfat", ["bdyfat_average"], 1), 0)
+#define sTag$body_fat( targ ) llList2String(sTagAv(targ, "bdyfat", ["average"], 1), 0)
 #define sTag$bdyfat( targ ) sTag$body_fat(targ)
 
-#define sTag$body_muscle( targ ) llList2String(sTagAv(targ, "bdymscl", ["bdymscl_average"], 1), 0)
+#define sTag$body_muscle( targ ) llList2String(sTagAv(targ, "bdymscl", ["average"], 1), 0)
 #define sTag$bdymscl( targ ) sTag$body_muscle(targ)
 
 
 
 #define sTag$outfit( targ ) sTagAv(targ, "ofit", [], 0)
 #define sTag$ofit( targ ) sTag$outfit(targ)
+
+
+// Outfit functions
+/*
+	Tries to create a JSON object with a key for each outfit item. Note that if you've tagged the same item multiple times, (such as multiple bracelets), the tags will all be merged.
+	Ex: ofit_wrist_watch and ofit_wrist_bracelet would become "wrist":["watch","bracelet"]
+	
+	Example:
+	
+*/
+#define sTag$outfit2json( targ ) _stotj( targ )
+string _stotj( key targ ){
+	string out = "{}";
+	list itm = sTag$outfit( targ );
+	integer i = itm != [];
+	while( i-- ){
+		
+		list s = llParseString2List(llList2String(itm, i), (list)"_", []);
+		string t = llList2String(s, 0); // Tag
+		s = llDeleteSubList(s, 0,0);
+		list cur;
+		string c = llJsonGetValue(out, (list)t);
+		if( c != JSON_INVALID )
+			cur = llJson2List(c);
+		cur = cur + s;
+		out = llJsonSetValue(out, (list)t, llList2Json(JSON_ARRAY, cur));
+		
+	}
+	
+	return out;
+}
+
+
 
 
 
