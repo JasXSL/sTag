@@ -69,8 +69,8 @@ These are tags that many developers will incorporate to add some depth to their 
   <tr><th>Category</th><th>Value</th><th>Default Value</th><th>Quant</th><th>Example</th><th>Recommended Point</th><th>Explanation</th></tr>
   <tr> <td>pnoun</td> <td>he,him,his / she,her,her / USER_DEFINED</td> <td>DEVELOPER_DEFINED</td> <td>SINGLE</td> <td>pnoun_he,him,his</td> <td>Body</td> <td>Most users can omit this tag. The default value is left up to individual devs, because I'm not touching this subject. If you're not happy with the dev's implementation you can set it explicitly. Assuming the pronouns are he,him,his, the examples in order would be pronouns that fit "he is a cat", "it's him, the cat", "it's his cat". </td></tr>
   <tr><td colspan="7">Body characteristics</td></tr
-  <tr> <td>tail</td> <td>none/tiny/small/average/large/huge</td> <td>NONE</td> <td>SINGLE</td> <td>tail_nub</td> <td>Tail</td> <td>Tail type.</td> </tr>
-  <tr> <td>hair</td> <td>none/tiny/small/average/large/huge</td> <td>N/A</td> <td>SINGLE</td> <td>hair_long</td> <td>Hair</td> <td>Hair type.</td> </tr>
+  <tr> <td>tail</td> <td>none/tiny/small/average/large/huge</td> <td>NONE</td> <td>SINGLE</td> <td>tail_tiny</td> <td>Tail</td> <td>Tail type.</td> </tr>
+  <tr> <td>hair</td> <td>none/tiny/small/average/large/huge</td> <td>N/A</td> <td>SINGLE</td> <td>hair_large</td> <td>Hair</td> <td>Hair type.</td> </tr>
   <tr> <td>bdycoat</td> <td>fur/scales</td> <td>N/A</td> <td>MULTIPLE</td> <td>bdycoat_fur</td> <td>Body</td> <td>Skin/fur type</td> </tr>
   <tr> <td>bdytpe</td> <td>quadruped/USER_DEFINED</td> <td>bdytpe_biped</td> <td>SINGLE</td> <td>bdytpe_quadruped</td> <td>Body</td> <td></td> </tr>
   <tr> <td>bdyfat</td> <td>tiny/small/average/large/huge</td> <td>bdyfat_average</td> <td>SINGLE</td> <td>bdyfat_large</td> <td>Body</td> <td>Bodyfat. Assume large = chubby and huge = obese.</td> </tr>
