@@ -71,7 +71,7 @@ These are tags that many developers will incorporate to add some depth to their 
   <tr><td colspan="7">Body characteristics</td></tr
   <tr> <td>tail</td> <td>none/tiny/small/average/large/huge</td> <td>NONE</td> <td>SINGLE</td> <td>tail_nub</td> <td>Tail</td> <td>Tail type.</td> </tr>
   <tr> <td>hair</td> <td>none/tiny/small/average/large/huge</td> <td>N/A</td> <td>SINGLE</td> <td>hair_long</td> <td>Hair</td> <td>Hair type.</td> </tr>
-  <tr> <td>bdycoat</td> <td>fur/scales</td> <td>bdycoat_skin</td> <td>MULTIPLE</td> <td>bdycoat_fur</td> <td>Body</td> <td>Skin/fur type</td> </tr>
+  <tr> <td>bdycoat</td> <td>fur/scales</td> <td>n/a</td> <td>MULTIPLE</td> <td>bdycoat_fur</td> <td>Body</td> <td>Skin/fur type</td> </tr>
   <tr> <td>bdytpe</td> <td>quadruped/USER_DEFINED</td> <td>bdytpe_biped</td> <td>SINGLE</td> <td>bdytpe_quadruped</td> <td>Body</td> <td></td> </tr>
   <tr> <td>bdyfat</td> <td>none/tiny/small/average/large/huge</td> <td>bdyfat_average</td> <td>SINGLE</td> <td>bdyfat_large</td> <td>Body</td> <td>Bodyfat. Assume large = chubby and huge = obese.</td> </tr>
   <tr> <td>bdymscl</td> <td>none/tiny/small/average/large/huge</td> <td>bdymscl_average</td> <td>SINGLE</td> <td>bdymscl_large</td> <td>Body</td> <td>Muscle amount.</td> </tr>
