@@ -19,11 +19,10 @@ list sTagAv( key id, string category, list defaultVal, integer max ){
     
     list l = llGetAttachedList(id);
     list out; integer i = (l != []);
-	list add;
-    while( i-- ){
-        
+	while( i-- ){
+	
 		out += sTag(
-            llList2String(llGetObjectDetails(llList2Key(l, i), (list)OBJECT_DESC), 0),
+            (string)llGetObjectDetails(llList2Key(l, i), (list)OBJECT_DESC),
             category
         );
 		
@@ -40,46 +39,51 @@ list sTagAv( key id, string category, list defaultVal, integer max ){
 	Returns all tags from a description string. If category is empty, it only returns those tags, and removes the category from the tags to save memory.
 */
 list sTag( string desc, string category ){
-    
+
+	if( desc == "" || desc == "(No Description)")
+		return [];
+	
     list spl = llParseString2List(desc, (list)"$$", []);
     integer i = spl != [];
     list out;
     while( i-- ){
         
-        if( llGetSubString(llList2String(spl, i), 0, 3) == "TAG$" ){
-            
-            list sub = llParseString2List(
-                llGetSubString(llList2String(spl, i), 4, -1),
-                (list)"$", []
-            );
+		list sub = llParseString2List(
+			llList2String(spl, i),
+			(list)"$", []
+		);
+        if( llList2String(sub, 0) == "TAG" ){
             
             string pre;
             integer n;
-            for(; n < (sub != []); ++n ){
+            for( n = 1; n < (sub != []); ++n ){
                 
                 string val = llToLower(llList2String(sub, n));
-                if( llOrd(val, 0) == 0x21 ){ // Check for !
+                if( llOrd(val, 0) == 0x21 ){ // Check for ! which sets category for future things
                     
                     pre = llDeleteSubString(val, 0, 0);
                     val = "";
-                    
-                }
-                else if( pre )
-                    val = pre+"_"+val;        
-                
-                if( 
-                    llStringLength(val) && (
-                        !llStringLength(category) ||
-                        llGetSubString(val, 0, llStringLength(category)) == category+"_"
-                    )
-                ){
-				
-					// If category is set, we remove category from the output
-					if( category )
-						val = llDeleteSubString(val, 0, llStringLength(category));
-					out += val;
+                    jump stagC;
 					
                 }
+				
+				// Parse the tag
+				list tc = llParseString2List(val, (list)"_", []);
+				string s = pre;
+				if( pre == "" ){
+					s = llList2String(tc, 0);
+					tc = llDeleteSubList(tc, 0, 0);
+				}
+				if( category == "" || s == category ){
+				
+					if( category == "" )
+						tc = (list)s + tc;
+					// If category is set, we remove category from the output
+					out = out + llDumpList2String(tc, "_");
+					
+                }
+				
+				@stagC;
 				
             }
             
@@ -145,7 +149,7 @@ integer sTagExists( key id ){
 #define sTag$pnoun( targ ) sTag$pronouns(targ)
 
 #define sTag$subspecies( targ ) llList2String(sTagAv(targ, "subs", [], 1), 0)
-#define sTag$subspec( targ ) sTag$subspecies(targ)
+#define sTag$subs( targ ) sTag$subspecies(targ)
 
 #define sTag$tail( targ ) llList2String(sTagAv(targ, "tail", [], 1), 0)
 
@@ -177,14 +181,13 @@ integer sTagExists( key id ){
 	Example:
 	
 */
-#define sTag$outfit2json( targ ) _stotj( targ )
-string _stotj( key targ ){
+#define sTag$outfit2json( targ ) _stotj( sTag$outfit( targ ) )
+string _stotj( list tags ){
 	string out = "{}";
-	list itm = sTag$outfit( targ );
-	integer i = itm != [];
+	integer i = tags != [];
 	while( i-- ){
 		
-		list s = llParseString2List(llList2String(itm, i), (list)"_", []);
+		list s = llParseString2List(llList2String(tags, i), (list)"_", []);
 		string t = llList2String(s, 0); // Tag
 		s = llDeleteSubList(s, 0,0);
 		list cur;
@@ -254,7 +257,6 @@ integer _stgb( list tags ){
 			integer size = 3;
 			if( ~us )
 				size = sTag$sizeToInt(llGetSubString(tag, us+1,us+1));
-			
 			out = out & ~(0xF<<(pos*4)) | (size<<(pos*4));
 
 		}
@@ -292,5 +294,146 @@ integer _stib( key id ){
 
 
 #define sTag$bitsBitmask( targ ) _stbbm(sTagAv(targ, "bits", [], 0)) // Converts bits to a JasX standard genitals bitmask
+
+
+
+
+
+/*
+	== CACHING FUNCTIONS ==
+	Scanning each value is quite time intensive, expect somewhere around 70ms per read.
+	If you need to check many players against many values in a loop, you may want to add a cache to speed things up.
+	
+	- This does consume a fair amount of memory and linkset data space. 
+	- Each time you read a value it gets cached for STAG_CACHE_DUR seconds.
+	- This is mainly used in cases where you need to run lots of comparisons at once.
+	- Whenever you read a category with sTag$cache$get, it stores the value in linkset data using STAG_CACHE_PREFIX+uuid+category, and the time in STAG_CACHE_PREFIX+uuid+category
+	- You can also use sTag$cache$getBitsPacked(uuid) to cache the packed bit size numbers
+	- You can also use sTag$cache$outfit2json(uuid) to cache the whole outfit JSON string.
+	
+	If you know all the categories you need ahead of time, the fastest way is to call sTag$cache$multi( key uuid, list categories ) which will force cache all those categories at once
+	If you're only interested in a few categories at a time, you can use sTag$cache$get( key uuid, string category, list defaultVal, integer max ) to fetch a single value. If the value isn't cached, or the cache has expired, it'll be fetched anew.
+	
+	sTag$cache$reset() dumps the cache
+	sTag$cache$remove(uuid) removes all cached values for a UUID
+	
+	== Cache Benchmark: ==
+		llResetTime();
+        sTag$cache$multi(llGetOwner(), (list)
+            "bits" + 
+            "sex" +
+            "spec" +
+            "subs"
+        );
+        integer i;
+        for(; i < 100; ++i ){
+            integer packed = sTag$cache$getBitsPacked(llGetOwner());
+            sTag$breastsSize(packed);
+            sTag$cache$outfit2json(llGetOwner());
+            sTag$cache$get(llGetOwner(), "sex", [], 1);
+            sTag$cache$get(llGetOwner(), "subs", [], 1);
+        }
+        llOwnerSay((string)llGetTime());
+	Result: 0.55 seconds
+	
+	== Uncached Benchmark ==
+		llResetTime();
+        integer i;
+        for(; i < 100; ++i ){
+            integer packed = sTag$getBitsPacked(llGetOwner());
+            sTag$breastsSize(packed);
+            sTag$outfit2json(llGetOwner());
+            sTag$sex(llGetOwner());
+            sTag$subs(llGetOwner());
+        }
+        llOwnerSay((string)llGetTime());
+	Result: 28 seconds
+	
+*/
+/* LSD caching system */
+#ifndef STAG_CACHE_PREFIX
+	#define STAG_CACHE_PREFIX "sTag" // LSD key, uses the syntax: STAG_CACHE_PREFIX+uuid+category -> (arr/str)value(s), STAG_CACHE_PREFIX+"t"+uuid+category -> (int)unix_time
+#endif
+#ifndef STAG_CACHE_DUR
+	#define STAG_CACHE_DUR 10
+#endif
+
+#define sTag$cache$reset() llLinksetDataDeleteFound("^"+STAG_CACHE_PREFIX, "")
+#define sTag$cache$remove(uuid) llLinksetDataDeleteFound("^"+STAG_CACHE_PREFIX+"(t?)"+(string)uuid, "")
+#define sTag$cache$get(uuid, category, defaultVal, max) _stcg(uuid, category, defaultVal, max) 
+list _stcg( key uuid, string category, list defaultVal, integer max ){
+
+	integer u = llGetUnixTime();
+	integer time = (integer)llLinksetDataRead(STAG_CACHE_PREFIX+"t"+(string)uuid+category);
+	if( u-time > STAG_CACHE_DUR || !time ){
+		
+		// Need recache
+		list tags = sTagAv(uuid, category, defaultVal, max);
+		llLinksetDataWrite(STAG_CACHE_PREFIX+(string)uuid+category, llList2Json(JSON_ARRAY, tags));
+		llLinksetDataWrite(STAG_CACHE_PREFIX+"t"+(string)uuid+category, (string)llGetUnixTime());
+		
+	}
+	
+	return llJson2List(llLinksetDataRead(STAG_CACHE_PREFIX+(string)uuid+category));	
+
+}
+
+// Note that this doesn't support defaults
+#define sTag$cache$multi(uuid, categories) _stcm(uuid, categories)
+_stcm( key uuid, list categories ){
+	
+	list all = sTagAv( uuid, "", [], 0);
+	all = llListSort(all, 1, TRUE);
+	integer i; string desc; list pack;
+	for(; i <= (all != []); ++i ){
+		
+		list spl = llParseString2List(llList2String(all, i), (list)"_", []);
+		string cat = llList2String(spl, 0);
+		if( cat != desc || (i == (all != []) && pack != []) ){
+			
+			if( cat ){
+				llLinksetDataWrite(STAG_CACHE_PREFIX+(string)uuid+desc, llList2Json(JSON_ARRAY, pack));
+				llLinksetDataWrite(STAG_CACHE_PREFIX+"t"+(string)uuid, (string)llGetUnixTime());
+			}
+			pack = [];
+			desc = cat;
+			
+		}
+		pack += llDumpList2String(llDeleteSubList(spl, 0, 0), "_");
+		
+	}
+	
+}
+
+
+// Gets bits packed
+integer _stcgbp( key uuid ){
+
+	integer u = llGetUnixTime();
+	integer time = (integer)llLinksetDataRead(STAG_CACHE_PREFIX+"t"+(string)uuid+"€"); // Category is set to "€" since that can't be tagged
+	if( u-time > STAG_CACHE_DUR || !time ){
+		integer n = _stgb(sTag$cache$get(uuid, "bits", [], 0));
+		llLinksetDataWrite(STAG_CACHE_PREFIX+(string)uuid+"€", (string)n);
+		llLinksetDataWrite(STAG_CACHE_PREFIX+"t"+(string)uuid+"€", (string)llGetUnixTime());
+	}
+	return (integer)llLinksetDataRead(STAG_CACHE_PREFIX+(string)uuid+"€");
+
+}
+
+string _stco2j( key uuid ){
+
+	integer u = llGetUnixTime();
+	integer time = (integer)llLinksetDataRead(STAG_CACHE_PREFIX+"t"+(string)uuid+"$"); // Category is set to "$" since that can't be tagged
+	if( u-time > STAG_CACHE_DUR || !time ){
+		string d = _stotj(sTag$cache$get(uuid, "ofit", [], 0));
+		llLinksetDataWrite(STAG_CACHE_PREFIX+(string)uuid+"$", d);
+		llLinksetDataWrite(STAG_CACHE_PREFIX+"t"+(string)uuid+"$", (string)llGetUnixTime());
+	}
+	return llLinksetDataRead(STAG_CACHE_PREFIX+(string)uuid+"$");
+
+}
+
+#define sTag$cache$getBitsPacked(id) _stcgbp(id)
+#define sTag$cache$outfit2json(id) _stco2j(id)
 
 #endif

@@ -18,7 +18,7 @@ default
     {
         key t = llGetOwner();
 		
-		llOwnerSay("Scanning "+llGetDisplayName(t));
+		llOwnerSay("== Scanning "+llGetDisplayName(t)+" ==");
 		output("Species", (list)sTag$species(t));
         output("Sex", (list)sTag$sex(t));
 		output("Pronouns", (list)sTag$pronouns(t));
@@ -27,16 +27,16 @@ default
 		output("Hair size (0-5)", (list)sTag$sizeToInt(sTag$hair(t)));
 		output("Body coating", sTag$body_coat(t));
 		output("Body type", (list)sTag$body_type(t));
-		output("Outfit tags", (list)sTag$outfit(t));
 		
-		llOwnerSay("Genitals [type >> size]:");
+		llOwnerSay(":: Genitals [type >> size] ::");
 		integer bits = sTag$getBitsPacked(t);
-		output("Penis size", (list)sTag$penisSize(bits));
-		output("Vagina", (list)sTag$vagina(bits));
-		output("Breasts size", (list)sTag$breastsSize(bits));
-		output("Rear size", (list)sTag$rearSize(bits));
-		output("Testicles size", (list)sTag$testiclesSize(bits));
+		output("-- Penis size", (list)sTag$penisSize(bits));
+		output("-- Vagina", (list)sTag$vagina(bits));
+		output("-- Breasts size", (list)sTag$breastsSize(bits));
+		output("-- Rear size", (list)sTag$rearSize(bits));
+		output("-- Testicles size", (list)sTag$testiclesSize(bits));
 		
+		output("Outfit JSON", (list)sTag$outfit2json(t));
 		
     }
 }
