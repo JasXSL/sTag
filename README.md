@@ -1,7 +1,10 @@
+
 # sTag
+<img align="left" width="256" height="256" src="https://github.com/JasXSL/sTag/assets/6919137/fd424c10-a0b7-46f1-8fa3-7e7aac008920">
+
 sTag (or stag) is a specification for adding metadata to your Second Life avatars. This is done by adding tags to your attachment descriptions. Should your attachments be no-mod, you can wear an invisible prim with tags on it.
 
-# Background
+### Background
 Since Linden Labs added llGetAttachedList, scripts are now allowed to sweep an avatar's (non-HUD) attachments. This means that you can read descriptions synchronously from attachments, which in turns means that you can now add metadata that describes your avatar. This can be used to tell NPCs and other scripts some information about your avatar. For an instance, imagine if an NPC in your roleplay can react based on your appearance, such as gender or species. JasX products are planned to support this system, but the specification is open and anyone may use and modify it freely. I'd love to see some user input!
 
 We picked the double and single dollar-separated syntax because of the free JasX creative commons mesh libraries that have been spreading throughout the grid for the past 5-6 years or so. A lot of meshes out there will already be tagged using the $$ syntax with things like tFS$WOOD to denote that said prim should generate footstep sounds when walked over (as implemented by GoThongs and xMod).
