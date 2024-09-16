@@ -58,7 +58,7 @@ list sTag( string desc, string category ){
             integer n;
             for( n = 1; n < (sub != []); ++n ){
                 
-                string val = llToLower(llList2String(sub, n));
+                string val = llList2String(sub, n);
                 if( llOrd(val, 0) == 0x21 ){ // Check for ! which sets category for future things
                     
                     pre = llDeleteSubString(val, 0, 0);
@@ -214,7 +214,7 @@ string _stotj( list tags ){
 	Getting bodypart size is done through the bits category.
 	Since avatar scanning can be slow if done a lot, I strongly recommend using sTag$getBitsPacked, which will return an integer as a 4-bit array:
 	integer bits = sTag$getBitsPacked(uuid);
-	Then you can extract the genital sizes by using the sTag$<genital>Size macros, except for vagina which is just sTag$vagina since it doesn't support the size tags:
+	Then you can extract the genital sizes by using the sTag$<genital>Size macros tags:
 	integer penisSize = sTag$penisSize(bits); // 0 = none, 1 = tiny, 3 = average, 5 = huge etc.
 	
 	If your project isn't adult, you may try to infer genitals from the PG sex tag as a fallback. In that case use sTag$getBitsPackedInfer(). 
@@ -232,7 +232,7 @@ string _stotj( list tags ){
 #define sTag$bitoffs$testicles 16
 
 #define sTag$penisSize( bitmask ) (bitmask&0xF)
-#define sTag$vagina( bitmask ) (((bitmask>>sTag$bitoffs$vagina)&0xF)>0)
+#define sTag$vagina( bitmask ) ((bitmask>>sTag$bitoffs$vagina)&0xF)
 #define sTag$breastsSize( bitmask ) ((bitmask>>sTag$bitoffs$breasts)&0xF)
 #define sTag$rearSize( bitmask ) ((bitmask>>sTag$bitoffs$rear)&0xF)
 #define sTag$buttSize( bitmask ) sTag$rearSize( bitmask )
@@ -297,8 +297,6 @@ integer _stib( key id ){
 
 
 
-
-
 /*
 	== CACHING FUNCTIONS ==
 	Scanning each value is quite time intensive, expect somewhere around 70ms per read.
@@ -355,7 +353,7 @@ integer _stib( key id ){
 	#define STAG_CACHE_PREFIX "sTag" // LSD key, uses the syntax: STAG_CACHE_PREFIX+uuid+category -> (arr/str)value(s), STAG_CACHE_PREFIX+"t"+uuid+category -> (int)unix_time
 #endif
 #ifndef STAG_CACHE_DUR
-	#define STAG_CACHE_DUR 10
+	#define STAG_CACHE_DUR 60
 #endif
 
 #define sTag$cache$reset() llLinksetDataDeleteFound("^"+STAG_CACHE_PREFIX, "")
