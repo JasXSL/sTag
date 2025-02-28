@@ -30,9 +30,11 @@ We picked the double and single dollar-separated syntax because of the free JasX
 
 # User setup
 
-All you need to do is add tags to your attachment object descriptions.
+All you need to do is add tags to your attachment object descriptions. If you just want to generate some tags for yourself, [you can do so here](https://jasxsl.github.io/sTag/).
 
 ### Writing tags quick start guide:
+
+An easy way to create primary and secondary tags is to create a 
 
 1. Start by going through the [list](/tags/PG.md).
 2. I'm going to use my female thiccfox avatar for this example. The required PG tags, at the time of writing, are: spec (species), subs (subspecies), sex, ofit (outfit). However, outfit tags are recommended to go on the outfit attachments themselves. So we'll ignore those for now and just focus on the body tags.
