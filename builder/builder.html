@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>sTag Builder</title>
+		<meta name="description" content="Local file that builds sTag tags for you.">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	</head>
+	<body>
+		<h1>sTag Builder</h1>
+
+
+		<div id="output"></div>
+		<div id="tags"></div>
+
+		<script>
+
+			const ce = ( tag, classList = [], parent = null, before = null ) => {
+				const out = document.createElement(tag);
+				if( parent ){
+					if( before )
+						parent.insertBefore(out, before);
+					else 
+						parent.appendChild(out);
+				}
+				out.classList.add(...classList);
+				return out;
+			}
+
+			class TagTemplate{
+				static FIELDTYPE_FREETEXT = 0;
+				static FIELDTYPE_SIZE = 1;
+				static FIELDTYPE_OUTFIT = 2; 		// Standard outfit tags
+				static FIELDTYPE_PRONOUNS = 3;
+				static FIELDTYPE_GENITALS = 4;		// Multiple dropdowns
+
+				static SLOT_BODY = 'body';
+				static SLOT_TAIL = 'tail';
+				static SLOT_CLOTHES = 'clothes';
+				static SLOT_HEAD = 'head';
+				static SLOT_HAIR = 'hair';
+				
+				ranking = 0; // 0 = primary, 1 = secondary, 2 = tertiary
+				category = '';		// Display name 
+				value = '';			// tag name
+				fieldtype = TagTemplate.FIELDTYPE_FREETEXT;
+				description = '';
+				slot = TagTemplate.SLOT_BODY;
+				multiple = false;
+				adult = false;
+				div = null;
+				addButton = null;
+				default = null;
+
+				constructor( settings = {} ){
+
+					for( let i in settings ){
+						if( this.hasOwnProperty(i) ){
+							this[i] = settings[i];
+						}
+					}
+					
+				}
+
+
+				getDefaultString(){
+					if( this.default === null )
+						return '';
+					return String(this.default);
+				}
+
+				addInput(){
+
+					const div = ce('div', ["row"], this.div, this.addButton);
+					const ft = this.fieldtype;
+					if( ft === TagTemplate.FIELDTYPE_FREETEXT ){
+						let input = ce('input', [], div);
+						input.type = 'text';
+						input.value = this.getDefaultString();
+					}
+					else if( ft === TagTemplate.FIELDTYPE_SIZE ){
+						div.appendChild(this.getSizeSelect('', this.getDefaultString()));	
+					}
+					else if( ft === TagTemplate.FIELDTYPE_OUTFIT ){
+
+						let select = ce('select', [], div);
+						let option = ce('option', [], select);
+						option.value = '';
+						option.innerText = 'N/A';
+						option = ce('option', [], select);
+						option.value = 'underpants';
+						option.innerText = 'Underpants (Incl bikini bottoms, thongs, swimtrunks etc)';
+						option = ce('option', [], select);
+						option.value = 'pants';
+						option.innerText = 'Pants (Incl shorts etc)';
+						option = ce('option', [], select);
+						option.value = 'skirt';
+						option.innerText = 'Skirt';
+						option = ce('option', [], select);
+						option.value = 'dress';
+						option.innerText = 'Dress';
+						option = ce('option', [], select);
+						option.value = 'bodysuit';
+						option.innerText = 'Bodysuit (covers upper and lower body)';
+						option = ce('option', [], select);
+						option.value = 'bra';
+						option.innerText = 'Bra (Includes bikini tops)';
+						option = ce('option', [], select);
+						option.value = 'shirt';
+						option.innerText = 'Shirt';
+						option = ce('option', [], select);
+						option.value = 'jacket';
+						option.innerText = 'Jacket (Includes coats etc)';
+						option = ce('option', [], select);
+						option.value = 'armor';
+						option.innerText = 'Armor';
+						option = ce('option', [], select);
+						option.value = 'leggings';
+						option.innerText = 'Leggings (long socks if it\'s longer than your knees)';
+						option = ce('option', [], select);
+						option.value = 'gloves';
+						option.innerText = 'Gloves';
+						option = ce('option', [], select);
+						option.value = 'glasses';
+						option.innerText = 'Glasses (Goggles etc)';
+						option = ce('option', [], select);
+						option.value = 'hat';
+						option.innerText = 'Hat (Helmets, etc)';
+						option = ce('option', [], select);
+						option.value = 'wrist';
+						option.innerText = 'Wrist (Bracelets, watches etc)';
+						option = ce('option', [], select);
+						option.value = 'socks';
+						option.innerText = 'Socks (long socks if it\'s shorter than your knees)';
+						option = ce('option', [], select);
+						option.value = 'belt';
+						option.innerText = 'Belt';
+						option = ce('option', [], select);
+						option.value = 'neck';
+						option.innerText = 'Neck (Collar, necklace etc)';
+						option = ce('option', [], select);
+						option.value = 'shoulder';
+						option.innerText = 'Shoulder (Shoulderplates etc)';
+						option = ce('option', [], select);
+						option.value = 'held';
+						option.innerText = 'Held (Generic tag for anything you\'re HOLDING)';
+
+					}
+					else if( ft === TagTemplate.FIELDTYPE_PRONOUNS ){
+
+						let label = ce('label', [], div);
+						label.innerText = 'He';
+						let input = ce('input', [], label);
+						input.name="0";
+						input.type = 'text';
+						label = ce('label', [], div);
+						label.innerText = 'Him';
+						input = ce('input', [], label);
+						input.name="1";
+						input.type = 'text';
+						label = ce('label', [], div);
+						label.innerText = 'His';
+						input = ce('input', [], label);
+						input.name="2";
+						input.type = 'text';
+
+					}
+					else if( ft === TagTemplate.FIELDTYPE_GENITALS ){
+
+						let label = ce('label', [], div);
+						let def = this.default || {};
+						label.innerText = 'Penis';
+						div.appendChild(this.getSizeSelect("p", def.p));
+						label = ce('label', [], div);
+						label.innerText = 'Vagina';
+						div.appendChild(this.getSizeSelect("v", def.v));
+						label = ce('label', [], div);
+						label.innerText = 'Breasts';
+						div.appendChild(this.getSizeSelect("b", def.b));
+						label = ce('label', [], div);
+						label.innerText = 'Butt';
+						div.appendChild(this.getSizeSelect("r", def.r));
+						label = ce('label', [], div);
+						label.innerText = 'Balls';
+						div.appendChild(this.getSizeSelect("t", def.t));
+
+					}
+
+					div.querySelectorAll("input, select")?.forEach( input => input.onchange = TagTemplate.compile.bind(TagTemplate) );
+
+				}
+
+				compile(){
+
+					const div = this.div;
+					let out = [];
+					const ft = this.fieldtype;
+					const ds = this.getDefaultString();
+					div.querySelectorAll("div.row")?.forEach( row => {
+						
+						if( ft === TagTemplate.FIELDTYPE_FREETEXT ){
+							
+							const val = row.querySelector("input").value.trim();
+							if( val && val !== ds ){
+								out.push(val);
+							}
+							
+						}
+						else if( ft === TagTemplate.FIELDTYPE_SIZE ){
+
+							const val = row.querySelector("select").value;
+							if( val !== ds )
+								out.push(val);
+
+						}
+						else if( ft === TagTemplate.FIELDTYPE_PRONOUNS ){
+							
+							let fData = [];
+							row.querySelectorAll("input")?.forEach( input => {
+
+								if( input.value )
+									fData.push(input.value.trim());
+
+							});
+							if( fData[0] && fData[1] && fData[2] )
+								out.push(fData.join(","));
+
+						}
+						else if( ft === TagTemplate.FIELDTYPE_GENITALS ){
+
+							row.querySelectorAll("select")?.forEach( select => {
+								const val = select.value;
+								if( !this.default || val !== this.default[select.name] )
+									out.push(select.name+'_'+val);
+							});
+
+						}
+						else if( ft === TagTemplate.FIELDTYPE_OUTFIT ){
+
+							row.querySelectorAll("select")?.forEach( select => {
+								const val = select.value;
+								if( val )
+									out.push(val);
+							})
+							
+						}
+
+					});
+					return out;
+
+				}
+
+				flatten( arr ){
+
+					return arr.join("$");
+
+				}
+
+				getSizeSelect( name = '', def = '' ){
+
+					let select = ce('select', []);
+					if( name )
+						select.name = name;
+					let option = ce('option', [], select);
+					option.value = 'n';
+					option.innerText = 'None';
+					option = ce('option', [], select);
+					option.value = 't';
+					option.innerText = 'Tiny';
+					option = ce('option', [], select);
+					option.value = 's';
+					option.innerText = 'Small';
+					option = ce('option', [], select);
+					option.value = 'a';
+					option.innerText = 'Average';
+					option = ce('option', [], select);
+					option.value = 'l';
+					option.innerText = 'Large';
+					option = ce('option', [], select);
+					option.value = 'h';
+					option.innerText = 'Huge';
+					
+					if( def )
+						select.value = def;
+					return select;
+
+				}
+
+
+
+				static templates = [];
+
+				static add( category, fieldtype ){
+					this.templates.push(new this(category, fieldtype));
+					return this;
+				}
+
+				static getByValue( value ){
+					for( let template of this.templates ){
+						if( template.value === value )
+							return template;
+					}
+				}
+
+				static build(){
+
+					const tags = document.querySelector('#tags');
+					let h2 = ce('h2', [], tags);
+					h2.innerText = "Primary Tags";
+					let primary = ce('div', ["primary"], tags);
+					h2 = ce('h2', [], tags);
+					h2.innerText = "Secondary Tags";
+					let secondary = ce('div', ["secondary"], tags);
+
+					for( let template of this.templates ){
+
+						let div = ce('div', ["tagEditor"], template.ranking == 0 ? primary : secondary);
+						template.div = div;
+						let h3 = ce('h3', [], div);
+						h3.innerText = template.category;
+						let p = ce('p', [], div);
+						p.innerText = template.description;
+
+						template.addInput();
+
+						if( template.multiple ){
+
+							let p = ce('input', [], div);
+							p.type = "button";
+							p.value = "Add";
+							template.addButton = p;
+							p.onclick= () => {
+								template.addInput();
+								this.compile();
+							};
+
+						}
+						
+					}
+
+					// Load from localStorage
+					if( localStorage.lastSettings ){
+
+						try{
+							let settings = JSON.parse(localStorage.lastSettings);
+							for( let template of this.templates ){
+
+								let data = settings[template.value];
+								if( data === undefined )
+									continue;
+
+								// Need to add additional rows
+								for( let i = 1; i < data.length; ++i )
+									template.addInput();
+
+								const rows = template.div.querySelectorAll("div.row");
+								for( let [i, row] of rows.entries() ){
+
+									let inputs = [...row.querySelectorAll("input, select")];
+									let fieldDataArray = data[i];
+									if( !fieldDataArray )
+										break;
+									
+									for( let [i, val] of fieldDataArray.entries() ){
+
+										if( i >= inputs.length )
+											break;
+										inputs[i].value = val;
+										
+									}
+
+
+								}
+
+							}
+							
+
+						}
+						catch(err){
+							console.error(err);	
+						}
+
+					}
+
+					this.compile();
+					
+
+
+				}
+
+				static compile(){
+
+					let obj = {};
+					let slots = new Map();
+					for( let template of this.templates ){
+
+						const arr = template.compile();
+						if( !arr.length )
+							continue;
+
+						obj[template.value] = [];
+
+						// Save all inputs
+						template.div.querySelectorAll("div.row")?.forEach( row => {
+							
+							let sub = [];
+							let inputs = row.querySelectorAll("input, select");
+							for( let input of inputs ){
+								if( input.value.trim() !== '' ){
+									sub.push(input.value);
+								}
+							}
+							if( sub.length )
+								obj[template.value].push(sub);
+
+						});
+
+						if( !slots.has(template.slot) )
+							slots.set(template.slot, new Map());
+						
+						let slot = slots.get(template.slot);
+						if( !slot.has(template.value) )
+							slot.set(template.value, []);
+
+						
+						slot.get(template.value).push(arr);
+
+					}
+
+					const output = document.getElementById('output');
+					output.replaceChildren();
+
+					for( let [slot, data] of slots.entries() ){
+
+						let div = ce('div', [], output);
+						let span = ce('span', [], div);
+						span.innerText = slot+": ";
+						
+						let entries = [];
+						let aliases = [];
+						for( let [label, arr] of data.entries() ){
+
+							let template = this.getByValue(label);
+							if( !template )
+								continue;
+
+							let text = label;
+							let flat = [];
+							for( let el of arr ){
+								flat.push(...el);
+							}				
+							// Only one, no need to alias
+							if( flat.length < 2 ){
+								entries.push(text+"_"+template.flatten(flat));
+							}
+							// Alias
+							else{
+								aliases.push('!'+text+"$"+template.flatten(flat));
+							}
+
+						}
+
+						span = ce('span', [], div);
+						const compiled = [];
+						if( entries.length )
+							compiled.push(entries);
+						if( aliases.length )
+							compiled.push(aliases);
+						span.innerText = "TAG$" + compiled.join("$");
+
+					}
+							
+
+
+					
+					localStorage.lastSettings = JSON.stringify(obj);
+
+
+				}
+
+			}
+
+			TagTemplate
+				// Primary
+				.add({
+					value: 'spec', category: 'Species', description: 'Character species, such as human or dobermann.',
+					slot: TagTemplate.SLOT_BODY, fieldtype: TagTemplate.FIELDTYPE_FREETEXT
+				})
+				.add({
+					value: 'subs', category: 'Subspecies', description : 'Taxonomy name, such as canine. Skip if same as species.', 
+					multiple : true, slot: TagTemplate.SLOT_BODY, fieldtype: TagTemplate.FIELDTYPE_FREETEXT
+				})
+				.add({
+					value: 'sex', category: 'Sex', description: 'Name of sex, such as male or female.', 
+					slot: TagTemplate.SLOT_BODY, fieldtype: TagTemplate.FIELDTYPE_FREETEXT
+				})
+				.add({
+					value: 'ofit', category: 'Outfit', description: 'Generic name of clothing worn, such as pants, or bodysuit. Use a separate sTag description for each attachment if possible.', 
+					multiple: true,slot: TagTemplate.SLOT_CLOTHES, fieldtype: TagTemplate.FIELDTYPE_OUTFIT
+				})
+				// Adult
+				.add({
+					value: 'bits', category: 'Genitals', description: 'Genital sizes/existence.', 
+					slot: TagTemplate.SLOT_BODY, fieldtype: TagTemplate.FIELDTYPE_GENITALS, adult: true, default : {p:'n',v:'n',b:'n',r:'a',t:'n'}
+				})
+
+
+
+				// Secondary
+				.add({
+					value: 'pnoun', category: 'Pronouns', description: 'Name of pronouns (optional).', 
+					ranking: 1, slot: TagTemplate.SLOT_BODY, fieldtype: TagTemplate.FIELDTYPE_PRONOUNS
+				})
+				.add({
+					value: 'tail', category: 'Tail', description: 'Size of tail, only needed if you have one.', default : 'n',
+					ranking: 1, slot: TagTemplate.SLOT_TAIL, fieldtype: TagTemplate.FIELDTYPE_SIZE
+				})
+				.add({ 
+					value: 'hair', category: 'Hair', description: 'Size of hair, only needed if you have hair.', default : 'n', 
+					ranking: 1, slot: TagTemplate.SLOT_HAIR, fieldtype: TagTemplate.FIELDTYPE_SIZE
+				})
+				.add({
+					value: 'bdycoat', category: 'Body coating', description: 'Type of body coating, such as fur or scales.', 
+					ranking: 1, multiple: true, slot: TagTemplate.SLOT_BODY, fieldtype: TagTemplate.FIELDTYPE_FREETEXT
+				})
+				.add({
+					value: 'bdytype', category: 'Body type', description: 'If not a biped, you can enter here.', default : 'biped',
+					ranking: 1, slot: TagTemplate.SLOT_BODY, fieldtype: TagTemplate.FIELDTYPE_FREETEXT
+				})
+				.add({
+					value: 'bdyfat', category: 'Body fat', description: 'Percentage of body fat.', default : 'a',
+					ranking: 1, slot: TagTemplate.SLOT_BODY, fieldtype: TagTemplate.FIELDTYPE_SIZE
+				})
+				.add({
+					value: 'bdymscl', category: 'Muscle Tone', description: 'How muscular is the avatar.', default : 'a',
+					ranking: 1, slot: TagTemplate.SLOT_BODY, fieldtype: TagTemplate.FIELDTYPE_SIZE
+				})
+			;
+
+
+			TagTemplate.build();
+
+			
+
+		</script>
+	</body>
+</html>
+
