@@ -6,6 +6,113 @@
 		<title>sTag Builder</title>
 		<meta name="description" content="Local file that builds sTag tags for you.">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<style>
+			:root {
+				--white: #fff;
+				--light-grey: #e5e5e5;
+				--grey: #808080;
+				--dark-grey: #333;
+				--orange: #ffa500;
+				--dark-orange: #aa5511;
+				--shadow: 5px 5px 15px rgba(0,0,0,0.5);
+			}
+
+			body {
+				background-color: var(--dark-grey);
+				color: var(--white);
+				font-family: sans-serif;
+				font-size: 16px;
+				margin: 0;
+				padding: 20px;
+			}
+
+			#output {
+				background-color: var(--grey);
+				border-radius: 5px;
+				padding: 10px;
+				position: fixed;
+				top:20px; right:20px;
+				box-shadow: var(--shadow);
+				min-width: 50vw;
+				border: 3px solid var(--light-grey);
+				font-size:20px;
+				text-align: right;
+				display: flex;
+				justify-content: right;
+				flex-wrap: wrap;
+			}
+
+
+			#tags {
+				background-color: var(--dark-grey);
+				border-radius: 5px;
+				padding: 10px;
+			}
+
+			#tags > div.primary, #tags > div.secondary {
+				display: flex;
+				flex-wrap: wrap;
+			}
+
+			#tags div.tagEditor{
+				margin:10px;
+				background-color: var(--dark-orange);
+				border-radius: 5px;
+				padding: 10px;
+				min-width: 200px;
+				box-shadow: var(--shadow);
+				flex:1;
+			}
+
+			#output > p {
+				margin: 0;
+			}
+
+			input, select{
+				font-size:16px;
+				padding: 5px;
+				outline: none;
+				border-color: var(--light-grey);
+				border-style: solid;
+				border-radius: 5px;
+			}
+
+			input.short{
+				width: 50px;
+			}
+			label{
+				display:inline-block;
+				margin:5px;
+			}
+
+			select{
+				max-width: 100%;
+			}
+
+			input[type="button"] {
+				background-color: var(--orange);
+				border: none;
+				color: var(--dark-grey);
+				padding: 10px 20px;
+				font-size: 16px;
+				margin-top: 10px;
+			}
+
+			span.tag{
+				color: var(--white);
+				background-color: var(--dark-orange);
+				border-radius: 5px;
+				padding: 15px;
+				margin: 5px;
+				display:inline-block;
+			}
+
+			span.slot{
+				font-style: italic;
+								
+			}
+
+		</style>
 	</head>
 	<body>
 		<h1>sTag Builder</h1>
@@ -13,8 +120,13 @@
 
 		<div id="output"></div>
 		<div id="tags"></div>
+		<input id="reset" type="button" value="Reset All" />
 
 		<script>
+			/*
+				Todo:
+				- Add CSS
+			*/
 
 			const ce = ( tag, classList = [], parent = null, before = null ) => {
 				const out = document.createElement(tag);
@@ -35,11 +147,11 @@
 				static FIELDTYPE_PRONOUNS = 3;
 				static FIELDTYPE_GENITALS = 4;		// Multiple dropdowns
 
-				static SLOT_BODY = 'body';
-				static SLOT_TAIL = 'tail';
-				static SLOT_CLOTHES = 'clothes';
-				static SLOT_HEAD = 'head';
-				static SLOT_HAIR = 'hair';
+				static SLOT_BODY = 'Body';
+				static SLOT_TAIL = 'Tail';
+				static SLOT_CLOTHES = 'Clothes';
+				static SLOT_HEAD = 'Head';
+				static SLOT_HAIR = 'Hair';
 				
 				ranking = 0; // 0 = primary, 1 = secondary, 2 = tertiary
 				category = '';		// Display name 
@@ -150,18 +262,18 @@
 					else if( ft === TagTemplate.FIELDTYPE_PRONOUNS ){
 
 						let label = ce('label', [], div);
-						label.innerText = 'He';
-						let input = ce('input', [], label);
+						label.innerText = 'He ';
+						let input = ce('input', ["short"], label);
 						input.name="0";
 						input.type = 'text';
 						label = ce('label', [], div);
-						label.innerText = 'Him';
-						input = ce('input', [], label);
+						label.innerText = 'Him ';
+						input = ce('input', ["short"], label);
 						input.name="1";
 						input.type = 'text';
 						label = ce('label', [], div);
-						label.innerText = 'His';
-						input = ce('input', [], label);
+						label.innerText = 'His ';
+						input = ce('input', ["short"], label);
 						input.name="2";
 						input.type = 'text';
 
@@ -170,20 +282,20 @@
 
 						let label = ce('label', [], div);
 						let def = this.default || {};
-						label.innerText = 'Penis';
-						div.appendChild(this.getSizeSelect("p", def.p));
+						label.innerText = 'Penis ';
+						label.appendChild(this.getSizeSelect("p", def.p));
 						label = ce('label', [], div);
-						label.innerText = 'Vagina';
-						div.appendChild(this.getSizeSelect("v", def.v));
+						label.innerText = 'Vagina ';
+						label.appendChild(this.getSizeSelect("v", def.v));
 						label = ce('label', [], div);
-						label.innerText = 'Breasts';
-						div.appendChild(this.getSizeSelect("b", def.b));
+						label.innerText = 'Breasts ';
+						label.appendChild(this.getSizeSelect("b", def.b));
 						label = ce('label', [], div);
-						label.innerText = 'Butt';
-						div.appendChild(this.getSizeSelect("r", def.r));
+						label.innerText = 'Butt ';
+						label.appendChild(this.getSizeSelect("r", def.r));
 						label = ce('label', [], div);
-						label.innerText = 'Balls';
-						div.appendChild(this.getSizeSelect("t", def.t));
+						label.innerText = 'Balls ';
+						label.appendChild(this.getSizeSelect("t", def.t));
 
 					}
 
@@ -286,7 +398,9 @@
 					return select;
 
 				}
-
+				reset(){
+					this.div = this.addButton = null;
+				}
 
 
 				static templates = [];
@@ -301,6 +415,15 @@
 						if( template.value === value )
 							return template;
 					}
+				}
+
+				static reset(){
+					delete localStorage.lastSettings;
+					document.getElementById('tags').replaceChildren();
+					document.getElementById('output').replaceChildren();
+					for( let template of this.templates )
+						template.reset();
+					this.build();
 				}
 
 				static build(){
@@ -342,8 +465,10 @@
 					// Load from localStorage
 					if( localStorage.lastSettings ){
 
+
 						try{
 							let settings = JSON.parse(localStorage.lastSettings);
+							console.log("Loading settings", settings);
 							for( let template of this.templates ){
 
 								let data = settings[template.value];
@@ -431,11 +556,12 @@
 					const output = document.getElementById('output');
 					output.replaceChildren();
 
+					console.log(slots);
 					for( let [slot, data] of slots.entries() ){
 
-						let div = ce('div', [], output);
-						let span = ce('span', [], div);
-						span.innerText = slot+": ";
+						let div = ce('div', ["slotOutput"], output);
+						let span = ce('span', ["slot"], div);
+						span.innerText = slot+" mesh tags: ";
 						
 						let entries = [];
 						let aliases = [];
@@ -461,16 +587,18 @@
 
 						}
 
-						span = ce('span', [], div);
+						span = ce('span', ["tag"], div);
 						const compiled = [];
 						if( entries.length )
 							compiled.push(entries);
 						if( aliases.length )
 							compiled.push(aliases);
-						span.innerText = "TAG$" + compiled.join("$");
+						span.innerText = "TAG$" + compiled.map(el => el.join("$")).join("$");
 
 					}
-							
+						
+					if( !slots.size )
+						output.innerText = "Start configuring below, output shows up here.";
 
 
 					
@@ -540,6 +668,8 @@
 
 
 			TagTemplate.build();
+
+			document.getElementById('reset').onclick = TagTemplate.reset.bind(TagTemplate);
 
 			
 
