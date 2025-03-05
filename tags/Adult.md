@@ -64,13 +64,25 @@ Very few devs will use these due to their specificity. These can also include sy
 
   <tr><th colspan="7">Mind characteristics. Note to devs: These are purely to tailor games to users interests. They're a bit fiddly to setup, and I don't think a lot of people will go around with these publicly. But I'm leaving them in here as a tertiary tag. In addition to n/t/s/a/l/h, you can shorten entirely to e.</th></tr>
   <tr> <td>mdom</td> <td>none/tiny/small/average/large/huge/entirely</td> <td>N/A</td> <td>SINGLE</td> <td>mdom_average</td> <td>Head/Body/Dedicated preference prim</td> <td>Sets character sexual dominance, none being fully submissive, and average being a switch.</td> </tr>
-  <tr> <td>mkink</td> <td>USER_DEFINED</td> <td>N/A</td> <td>MULTIPLE</td> <td>mkink_spanking_huge</td> <td>Head/Body/Dedicated preference prim</td> <td>Adds character kinks. Think of this as a public F-list. You may append a non/tiny/small/average/large/huge/entirely value based on how much you like it. For a list of kinks I'd suggest copying from f-list directly.</td> </tr>
+  <tr> <td>mkink</td> <td>USER_DEFINED</td> <td>N/A</td> <td>MULTIPLE</td> <td>mkink_spanking_huge</td> <td>Head/Body/Dedicated preference prim</td> <td>Adds character kinks. Think of this as a public F-list. You may append a non/tiny/small/average/large/huge/entirely value based on how much you like it. For a list of kinks I'd suggest copying from f-list directly.</td> 
+  </tr>
   
   
   <tr><th colspan="7">Clothing</th></tr>
   <tr> <td>(ofit_) Todo: Extend the PG tertiary list with adult stuff:</td> <td colspan="6">
     What do you suggest?
   </td> </tr>
+
+  <tr><th colspan="7">External Data</th></tr>
+  <tr> 
+    <td>flist</td> 
+    <td>USER_DEFINED</td>
+    <td>NONE</td>
+    <td>SINGLE</td>
+    <td>jasdac</td>
+    <td>Head/Body/Preference prim</td>
+    <td>Links an F-List character to your avatar.</td>
+  </tr>
 
   
   
